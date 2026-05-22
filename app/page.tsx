@@ -1,9 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-import { motion, useScroll, useTransform, useMotionValue, MotionValue, useVelocity } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValue, MotionValue, useVelocity, AnimatePresence, useSpring } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, ChevronDown, Plus, Minus } from 'lucide-react';
 import { Counter } from '@/components/counter';
 
 const services = [
@@ -116,34 +116,71 @@ const verticals = [
   },
 ];
 
+const heroContainerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.15,
+    },
+  },
+};
+
+const heroWordRevealVariants = {
+  hidden: { y: '100%', opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      damping: 14,
+      stiffness: 90,
+    },
+  },
+};
+
+const heroFadeUpVariants = {
+  hidden: { y: 24, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      damping: 18,
+      stiffness: 80,
+    },
+  },
+};
+
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeTypology, setActiveTypology] = useState<number | null>(0);
 
-  // 1. HERO & ZOOM INTERACTIVES
+  // 1. HERO INTERACTIVES (CINEMATIC PARALLAX)
   const heroRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
 
-  // Hero text parallax
-  const heroTextY = useTransform(heroScroll, [0, 1], ['0%', '100%']);
-  const heroTextOpacity = useTransform(heroScroll, [0, 0.7], [1, 0]);
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 1.25;
+    }
+  }, []);
 
-  // Image zoom reveal
-  const zoomSectionRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: zoomScroll } = useScroll({
-    target: zoomSectionRef,
-    offset: ['start end', 'end start'],
-  });
+  // Parallax transitions for video backdrop
+  const videoScale = useTransform(heroScroll, [0, 1], [1.0, 1.12]);
+  const videoOpacity = useTransform(heroScroll, [0, 0.8], [1.0, 0.45]);
 
-  const zoomWidth = useTransform(zoomScroll, [0, 0.5], ['55vw', '100vw']);
-  const zoomHeight = useTransform(zoomScroll, [0, 0.5], ['55vh', '100vh']);
-  const zoomRadius = useTransform(zoomScroll, [0, 0.5], ['24px', '0px']);
-  const zoomScale = useTransform(zoomScroll, [0, 0.5], [1.2, 1]);
+  // Parallax transitions for overlay typography
+  const heroTextY = useTransform(heroScroll, [0, 1], ['0%', '30%']);
+  const heroTextOpacity = useTransform(heroScroll, [0, 0.65], [1.0, 0.0]);
 
-  // SVG Line Art drawing mapping
-  const pathLength = useTransform(zoomScroll, [0, 0.4], [0, 1]);
+  // SVG Line Art drawing mapping (draws over video as you scroll)
+  const pathLength = useTransform(heroScroll, [0, 0.45], [0, 1]);
+  const smoothPathLength = useSpring(pathLength, { stiffness: 45, damping: 15 });
 
   // 2. STATS SECTION BG COLOR INTERPOLATION
   const statsSectionRef = useRef<HTMLDivElement>(null);
@@ -172,14 +209,8 @@ export default function HomePage() {
     offset: ['start start', 'end end'],
   });
 
-  // 5. VERTICALS HORIZONTAL SCROLL
-  const horizontalsRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: horizontalScroll } = useScroll({
-    target: horizontalsRef,
-    offset: ['start start', 'end end'],
-  });
-  // Slide horizontally from 0% to -73% (covers 8 items plus spacing)
-  const xTranslate = useTransform(horizontalScroll, [0, 1], ['0%', '-73%']);
+  // 5. VERTICALS SHOWCASE LOGIC (STATE-BASED HOVER)
+  // No longer scroll-hijacked. Interactivity is managed inline through hover and click states.
 
   // 6. APPROACH ASYMMETRIC PARALLAX
   const approachRef = useRef<HTMLDivElement>(null);
@@ -201,18 +232,53 @@ export default function HomePage() {
 
   return (
     <div ref={containerRef} className="relative z-10 w-full overflow-hidden bg-transparent">
-      {/* 1. HERO & IMAGE ZOOM SECTION */}
-      <section ref={heroRef} className="relative min-h-[140vh] flex flex-col justify-between pt-36 overflow-hidden bg-transparent">
+      {/* 1. HERO WITH CINEMATIC VIDEO BACKGROUND */}
+      <section
+        ref={heroRef}
+        className="relative h-screen min-h-[700px] w-full flex flex-col justify-end pb-24 overflow-hidden bg-background"
+      >
+        {/* Cinematic Loop Video Backdrop */}
+        <motion.div
+          style={{ scale: videoScale, opacity: videoOpacity }}
+          className="absolute inset-0 z-0 h-full w-full pointer-events-none"
+        >
+          <motion.div
+            animate={{
+              scale: [1, 1.06, 1],
+              x: [0, 8, 0],
+              y: [0, -5, 0],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute inset-0 h-full w-full"
+          >
+            <video
+              ref={videoRef}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 h-full w-full object-cover"
+              src="/videos/construction.mp4"
+            />
+          </motion.div>
+          {/* Multi-layered cinematic gradient overlays for depth and extreme readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-background z-10 pointer-events-none" />
+          {/* <div className="absolute inset-0 bg-black/50 backdrop-blur-[0.5px] z-10 pointer-events-none" /> */}
+        </motion.div>
 
-        {/* Architectural grid drawing */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-20 dark:opacity-10">
+        {/* Architectural grid overlay drawing */}
+        <div className="absolute inset-0 z-10 pointer-events-none opacity-25 dark:opacity-15">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
             <motion.path
               d="M 10,0 L 10,100 M 30,0 L 30,100 M 50,0 L 50,100 M 70,0 L 70,100 M 90,0 L 90,100 M 0,20 L 100,20 M 0,50 L 100,50 M 0,80 L 100,80"
-              stroke="rgb(var(--foreground))"
-              strokeWidth="0.05"
+              stroke="rgb(255 255 255)"
+              strokeWidth="0.04"
               fill="none"
-              style={{ pathLength }}
+              style={{ pathLength: smoothPathLength }}
             />
             {/* Diagonal perspective layout lines */}
             <motion.path
@@ -220,62 +286,126 @@ export default function HomePage() {
               stroke="rgb(var(--accent))"
               strokeWidth="0.03"
               fill="none"
-              style={{ pathLength }}
+              style={{ pathLength: smoothPathLength }}
             />
           </svg>
         </div>
 
-        <div className="relative z-10 max-w-[1600px] mx-auto w-full px-6 lg:px-12 flex-grow flex flex-col justify-end pb-12">
-          {/* Eyebrow */}
+        {/* Heading & Details Overlay Content */}
+        <div className="relative z-20 max-w-[1600px] mx-auto w-full px-6 lg:px-12">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex items-center gap-3 mb-8"
+            variants={heroContainerVariants}
+            initial="hidden"
+            animate="visible"
+            style={{ y: heroTextY, opacity: heroTextOpacity }}
+            className="flex flex-col items-start"
           >
-            <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <p className="eyebrow">Boutique Design &amp; Craft Studio</p>
-          </motion.div>
+            {/* Eyebrow */}
+            <motion.div
+              variants={heroFadeUpVariants}
+              className="flex items-center gap-3 mb-6"
+            >
+              <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              <p className="eyebrow text-white/95">Boutique Design &amp; Craft Studio</p>
+            </motion.div>
 
-          {/* Mega headline */}
-          <motion.div style={{ y: heroTextY, opacity: heroTextOpacity }}>
-            <h1 className="display-heading text-mega mb-8 max-w-[12ch]">
-              Forming <span className="italic text-accent">spaces,</span> sculpting light, defining landscapes.
+            {/* Editorial Serif & Sans Mix Heading */}
+            <h1 className="display-heading text-5xl sm:text-7xl lg:text-8xl text-white mb-6 leading-[0.95] max-w-[15ch] tracking-tight">
+              <span className="block overflow-hidden h-fit py-1">
+                <motion.span variants={heroWordRevealVariants} className="block">
+                  Forming <span className="italic text-accent">spaces,</span>
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden h-fit py-1">
+                <motion.span variants={heroWordRevealVariants} className="block">
+                  sculpting light,
+                </motion.span>
+              </span>
+              <span className="block overflow-hidden h-fit py-1">
+                <motion.span variants={heroWordRevealVariants} className="block">
+                  defining <span className="font-sans font-light text-white/95">landscapes.</span>
+                </motion.span>
+              </span>
             </h1>
+
+            {/* Description Subheading */}
+            <motion.p
+              variants={heroFadeUpVariants}
+              className="text-sm sm:text-base text-white/75 max-w-xl font-sans leading-relaxed mb-8"
+            >
+              A dialogue between structural rigor and material resonance. We create premium architectural forms and construct enduring spaces with deliberate restraint and geometric precision.
+            </motion.p>
+
+            {/* Premium CTA Buttons */}
+            <motion.div
+              variants={heroFadeUpVariants}
+              className="flex flex-wrap gap-4 items-center"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+              >
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center px-8 py-4 bg-accent text-background font-mono text-xs uppercase tracking-wider rounded-full hover:bg-accent/90 transition-all duration-300 shadow-lg shadow-accent/15"
+                >
+                  Start a project
+                </Link>
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                className="group"
+              >
+                <Link
+                  href="/portfolio"
+                  className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white font-mono text-xs uppercase tracking-wider rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
+                >
+                  View Portfolio <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </motion.div>
+            </motion.div>
           </motion.div>
         </div>
 
-        {/* Framing expand block */}
-        <div ref={zoomSectionRef} className="relative w-full h-screen flex items-center justify-center bg-transparent mt-12">
-          <motion.div
-            style={{ width: zoomWidth, height: zoomHeight, borderRadius: zoomRadius }}
-            className="relative overflow-hidden shadow-2xl border border-border/10"
-          >
+        {/* Scroll down mouse indicator */}
+        <div className="absolute bottom-16 left-6 lg:left-12 z-20 hidden sm:flex items-center gap-4">
+          <div className="flex flex-col items-center gap-2">
+            <span className="font-mono text-[9px] uppercase tracking-widest text-white/45 [writing-mode:vertical-lr] rotate-180 mb-2">
+              Scroll to explore
+            </span>
             <motion.div
-              style={{
-                scale: zoomScale,
-                backgroundImage:
-                  'url(https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=2000&q=80)',
-              }}
-              className="absolute inset-0 bg-cover bg-center"
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+              className="w-px h-10 bg-gradient-to-b from-accent to-transparent"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/40 to-transparent" />
+          </div>
+        </div>
 
-            {/* Scroll Cue Inside zoom */}
-            <div className="absolute bottom-10 left-6 lg:left-12 right-6 lg:right-12 z-20 flex justify-between items-end">
-              <p className="text-sm opacity-60 leading-relaxed max-w-sm hidden md:block font-sans text-foreground">
-                We create structures with deliberate restraint and geometric precision. A dialogue between space and materiality.
-              </p>
-              <div className="flex items-center gap-2 eyebrow text-accent">
-                <span>Explore form</span>
-                <motion.div
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 1.8, repeat: Infinity }}
-                  className="w-px h-8 bg-accent"
-                />
-              </div>
+        {/* Bottom Ticker Marquee */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-black/45 backdrop-blur-sm border-t border-white/10 py-3.5 z-20 select-none">
+          <div className="marquee animate-[marquee_24s_linear_infinite] text-white/50 font-mono text-[9px] sm:text-[10px] tracking-[0.22em] uppercase gap-16 items-center">
+            <div className="flex shrink-0 items-center justify-around gap-16 min-w-full">
+              <span>Spatial Planning</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span>Architectural Craft</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span>Tectonic Science</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span>Material Research</span>
             </div>
-          </motion.div>
+            <div className="flex shrink-0 items-center justify-around gap-16 min-w-full">
+              <span>Spatial Planning</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span>Architectural Craft</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span>Tectonic Science</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span>Material Research</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -348,34 +478,226 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. VERTICALS GRID — HORIZONTAL SCROLL GALLERY */}
-      <section ref={horizontalsRef} className="relative h-[220vh] bg-transparent">
-        <div className="sticky top-0 h-screen flex flex-col justify-between py-24 overflow-hidden z-10 bg-transparent">
+      {/* 5. TYPOLOGIES SHOWCASE */}
+      <section className="py-24 bg-transparent relative z-20">
+        {/* Header area */}
+        <div className="relative z-10 max-w-[1600px] mx-auto w-full px-6 lg:px-12 flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16 bg-transparent">
+          <div>
+            <p className="eyebrow mb-4">— Typologies</p>
+            <h2 className="display-heading text-huge">
+              Eight <span className="italic text-accent">archetypes.</span> One system.
+            </h2>
+          </div>
+          <p className="text-sm opacity-60 max-w-sm font-sans mb-1 text-foreground">
+            A selection of projects exploring diverse typologies, scales, and programmatic requirements.
+          </p>
+        </div>
 
-          {/* Header area */}
-          <div className="relative z-10 max-w-[1600px] mx-auto w-full px-6 lg:px-12 flex flex-col md:flex-row md:items-end justify-between gap-4 bg-transparent">
-            <div>
-              <p className="eyebrow mb-4">— Typologies</p>
-              <h2 className="display-heading text-huge">
-                Eight <span className="italic text-accent">archetypes.</span> One system.
-              </h2>
-            </div>
-            <p className="text-sm opacity-60 max-w-sm font-sans mb-1 text-foreground">
-              A selection of projects exploring diverse typologies, scales, and programmatic requirements.
-            </p>
+        {/* Showcase Container */}
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 bg-transparent">
+          {/* Desktop Showcase: Expanding columns accordion */}
+          <div
+            onMouseLeave={() => {
+              window.dispatchEvent(new CustomEvent('portfolio-hover', { detail: { index: null } }));
+            }}
+            className="hidden lg:flex h-[600px] border border-border/80 rounded-3xl overflow-hidden bg-card/15 backdrop-blur-md"
+          >
+            {verticals.map((v, i) => {
+              const isActive = activeTypology === i;
+              return (
+                <div
+                  key={v.name}
+                  onMouseEnter={() => {
+                    setActiveTypology(i);
+                    window.dispatchEvent(new CustomEvent('portfolio-hover', { detail: { index: i } }));
+                  }}
+                  className={`relative h-full border-r last:border-r-0 border-border/40 transition-all duration-700 ease-[0.16,1,0.3,1] overflow-hidden cursor-pointer ${isActive ? 'flex-[6.5] min-w-[420px]' : 'flex-[1] min-w-[80px]'
+                    }`}
+                >
+                  {/* Background Image */}
+                  <div
+                    className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 ease-out ${isActive ? 'scale-105 brightness-[0.4] grayscale-0' : 'scale-100 brightness-[0.15] grayscale'
+                      }`}
+                    style={{ backgroundImage: `url(${v.image})` }}
+                  />
+
+                  {/* Geometric Grid Overlay */}
+                  <div className={`absolute inset-0 z-10 pointer-events-none border border-white/5 transition-opacity duration-500 ${isActive ? 'opacity-30' : 'opacity-0'}`} />
+
+                  {/* Panel Content */}
+                  <div className="relative z-20 h-full w-full">
+                    <AnimatePresence initial={false}>
+                      {isActive ? (
+                        <motion.div
+                          key="active-content"
+                          initial={{ opacity: 0, y: 15 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                          className="flex flex-col justify-between h-full p-8"
+                        >
+                          {/* Top Row */}
+                          <div className="flex items-center justify-between">
+                            <span className="font-mono text-lg text-accent font-semibold">
+                              {String(i + 1).padStart(2, '0')}
+                            </span>
+                            <span
+                              style={{ borderColor: `${v.color}45` }}
+                              className="px-3 py-1 backdrop-blur-md border rounded-full text-[10px] font-mono uppercase tracking-wider text-white bg-black/40"
+                            >
+                              {v.highlight}
+                            </span>
+                          </div>
+
+                          {/* Bottom Row Details */}
+                          <div className="flex flex-col items-start w-full">
+                            <span
+                              style={{ color: v.color }}
+                              className="font-mono text-xs uppercase tracking-wider mb-2 block font-semibold"
+                            >
+                              {v.count}
+                            </span>
+                            <h3 className="display-heading text-3xl md:text-4xl text-white font-normal leading-tight mb-4">
+                              {v.name}
+                            </h3>
+                            <p className="text-sm text-white/80 font-sans leading-relaxed mb-6 max-w-md">
+                              {v.description}
+                            </p>
+                            <Link
+                              href={v.href}
+                              className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent link-underline"
+                            >
+                              Explore Sector
+                              <div
+                                style={{ backgroundColor: v.color }}
+                                className="w-8 h-8 rounded-full text-black flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ml-2"
+                              >
+                                <ArrowUpRight className="w-4 h-4" />
+                              </div>
+                            </Link>
+                          </div>
+                        </motion.div>
+                      ) : (
+                        /* Inactive Vertical Column */
+                        <motion.div
+                          key="inactive-content"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="flex flex-col items-center justify-between h-full py-8 pointer-events-none"
+                        >
+                          <span className="font-mono text-sm opacity-60 text-white">
+                            {String(i + 1).padStart(2, '0')}
+                          </span>
+                          <span className="font-display text-xs uppercase tracking-widest text-white/80 [writing-mode:vertical-lr] rotate-180 mb-2 whitespace-nowrap">
+                            {v.name}
+                          </span>
+                          <div
+                            style={{ backgroundColor: v.color }}
+                            className="w-2 h-2 rounded-full shadow-lg"
+                          />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          {/* Horizontal slider track */}
-          <div className="relative z-10 w-full overflow-hidden bg-transparent">
-            <motion.div style={{ x: xTranslate }} className="flex gap-8 pl-6 lg:pl-12 w-max bg-transparent">
-              {verticals.map((v, i) => (
-                <VerticalCard
+          {/* Mobile Showcase: Collapsible Accordion List */}
+          <div className="flex flex-col gap-4 lg:hidden">
+            {verticals.map((v, i) => {
+              const isMobileActive = activeTypology === i;
+              return (
+                <div
                   key={v.name}
-                  vertical={v}
-                  index={i}
-                />
-              ))}
-            </motion.div>
+                  className="border border-border/60 rounded-2xl overflow-hidden bg-card/25 backdrop-blur-md"
+                >
+                  <button
+                    onClick={() => {
+                      const nextIndex = isMobileActive ? null : i;
+                      setActiveTypology(nextIndex);
+                      window.dispatchEvent(
+                        new CustomEvent('portfolio-hover', {
+                          detail: { index: nextIndex },
+                        })
+                      );
+                    }}
+                    className="flex items-center justify-between w-full p-6 text-left"
+                  >
+                    <div className="flex items-center gap-4">
+                      <span className="font-mono text-sm opacity-60">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <h3 className="font-display text-lg font-medium">{v.name}</h3>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span
+                        style={{ color: v.color, borderColor: `${v.color}35` }}
+                        className="hidden sm:inline-block text-[10px] font-mono uppercase tracking-wider border px-3 py-1 rounded-full bg-black/10 dark:bg-white/5"
+                      >
+                        {v.highlight}
+                      </span>
+                      <ChevronDown
+                        className={`w-5 h-5 opacity-60 transition-transform duration-300 ${isMobileActive ? 'rotate-180' : ''
+                          }`}
+                      />
+                    </div>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isMobileActive && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: 'easeInOut' }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-6 pb-6 pt-2 space-y-4">
+                          <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-border/20 shadow-inner bg-muted/10">
+                            <div
+                              className="absolute inset-0 bg-cover bg-center"
+                              style={{ backgroundImage: `url(${v.image})` }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent pointer-events-none" />
+                          </div>
+                          <div className="space-y-2">
+                            <div className="flex items-center justify-between">
+                              <span
+                                style={{ color: v.color }}
+                                className="font-mono text-xs uppercase tracking-wider font-semibold"
+                              >
+                                {v.count}
+                              </span>
+                              <span
+                                style={{ color: v.color, borderColor: `${v.color}35` }}
+                                className="inline-block sm:hidden text-[10px] font-mono uppercase tracking-wider border px-3 py-1 rounded-full bg-black/10 dark:bg-white/5"
+                              >
+                                {v.highlight}
+                              </span>
+                            </div>
+                            <p className="text-sm opacity-80 leading-relaxed font-sans">
+                              {v.description}
+                            </p>
+                          </div>
+                          <div className="pt-2">
+                            <Link
+                              href={v.href}
+                              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent link-underline"
+                            >
+                              Explore Sector <ArrowUpRight className="w-4 h-4" />
+                            </Link>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -559,166 +881,4 @@ function ServiceCard({ service, index, total, scrollYProgress }: ServiceCardProp
   );
 }
 
-// 3. Horizontal Scroll Vertical Card Component
-interface Vertical {
-  name: string;
-  image: string;
-  href: string;
-  description: string;
-  count: string;
-  highlight: string;
-  color: string;
-}
 
-interface VerticalCardProps {
-  vertical: Vertical;
-  index: number;
-}
-
-function VerticalCard({ vertical, index }: VerticalCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Custom Motion values for mouse hover tracking (3D card tilt & hover light reflection)
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-0.5, 0.5], ['10deg', '-10deg']);
-  const rotateY = useTransform(x, [-0.5, 0.5], ['-10deg', '10deg']);
-
-  // Glow position values
-  const glowX = useTransform(x, [-0.5, 0.5], ['0%', '100%']);
-  const glowY = useTransform(y, [-0.5, 0.5], ['0%', '100%']);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const el = cardRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-
-    // Normalize coordinates from -0.5 to 0.5
-    const normX = (e.clientX - rect.left) / rect.width - 0.5;
-    const normY = (e.clientY - rect.top) / rect.height - 0.5;
-
-    x.set(normX);
-    y.set(normY);
-  };
-
-  const handleMouseLeave = () => {
-    // Reset values to zero
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <div className="perspective-[1000px] py-4 bg-transparent">
-      <Link href={vertical.href} className="block">
-        <motion.div
-          ref={cardRef}
-          style={{
-            rotateX,
-            rotateY,
-            transformStyle: 'preserve-3d',
-          }}
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() => {
-            setIsHovered(true);
-            window.dispatchEvent(new CustomEvent('portfolio-hover', { detail: { index } }));
-          }}
-          onMouseLeave={() => {
-            setIsHovered(false);
-            handleMouseLeave();
-            window.dispatchEvent(new CustomEvent('portfolio-hover', { detail: { index: null } }));
-          }}
-          className="relative w-[300px] sm:w-[350px] md:w-[420px] aspect-[4/5] bg-card/45 border border-border/80 rounded-3xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-300 backdrop-blur-md group"
-        >
-          {/* Background Image with blur-zoom transition */}
-          <motion.div
-            className="absolute inset-0 bg-cover bg-center transition-all duration-700"
-            style={{ backgroundImage: `url(${vertical.image})` }}
-            animate={{
-              scale: isHovered ? 1.08 : 1.0,
-              filter: isHovered ? 'brightness(0.35) contrast(1.15) blur(1px)' : 'brightness(0.6) contrast(1.0) blur(0px)',
-            }}
-          />
-
-          {/* Clean gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent pointer-events-none" />
-
-          {/* 3D custom-colored glow highlight overlay */}
-          <motion.div
-            className="absolute inset-0 pointer-events-none transition-opacity duration-300"
-            style={{
-              // @ts-ignore
-              '--glow-x': glowX,
-              // @ts-ignore
-              '--glow-y': glowY,
-              background: `radial-gradient(circle at var(--glow-x) var(--glow-y), ${vertical.color}25 0%, transparent 60%)`,
-            }}
-          />
-
-          {/* Card content layers */}
-          <div className="absolute inset-0 p-8 flex flex-col justify-between items-stretch z-10 bg-transparent">
-            {/* Top row: Sector index and highlight tag */}
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-xs opacity-65 text-white">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              <div
-                style={{ borderColor: `${vertical.color}35`, background: 'rgba(0,0,0,0.3)' }}
-                className="px-3 py-1 backdrop-blur-md border rounded-full text-[10px] font-mono uppercase tracking-wider text-white/95"
-              >
-                {vertical.highlight}
-              </div>
-            </div>
-
-            {/* Bottom details block */}
-            <div className="flex flex-col items-start w-full">
-              {/* Completed builds indicator */}
-              <span
-                style={{ color: vertical.color }}
-                className="font-mono text-[10px] uppercase tracking-wider mb-2 block font-semibold"
-              >
-                {vertical.count}
-              </span>
-
-              {/* Title */}
-              <h3 className="display-heading text-2xl md:text-3xl text-white font-normal leading-tight">
-                {vertical.name}
-              </h3>
-
-              {/* Slider description reveal */}
-              <motion.p
-                initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                animate={{
-                  height: isHovered ? 'auto' : 0,
-                  opacity: isHovered ? 0.8 : 0,
-                  marginTop: isHovered ? 8 : 0,
-                }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="text-xs text-white/80 font-sans leading-relaxed overflow-hidden"
-              >
-                {vertical.description}
-              </motion.p>
-
-              {/* Footer action detail */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 10 }}
-                transition={{ duration: 0.35, delay: isHovered ? 0.05 : 0 }}
-                className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between w-full"
-              >
-                <span className="font-mono text-[10px] uppercase tracking-widest text-white/60 font-sans">Explore Sector</span>
-                <div
-                  style={{ backgroundColor: vertical.color }}
-                  className="w-8 h-8 rounded-full text-black flex items-center justify-center transition-transform duration-300 hover:scale-110"
-                >
-                  <ArrowUpRight className="w-4 h-4" />
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
-      </Link>
-    </div>
-  );
-}
