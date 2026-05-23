@@ -90,11 +90,15 @@ export default function Navbar() {
         <nav className="max-w-[1600px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-accent rounded-sm flex items-center justify-center text-background font-display font-bold text-sm">
-              A
+            <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden rounded-sm bg-white p-1">
+              <img
+                src="https://www.newpathconstruction.com/wp-content/uploads/2021/01/icon-min.png"
+                alt="New Path Construction Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
-            <span className="font-display text-lg tracking-tight hidden sm:block">
-              Aethel<span className="text-accent">.</span>
+            <span className="font-display text-lg tracking-tight font-bold hidden sm:block">
+              New Path<span className="text-accent">.</span>
             </span>
           </Link>
 
@@ -180,9 +184,18 @@ export default function Navbar() {
             className="fixed inset-0 z-[60] bg-background lg:hidden flex flex-col h-[100dvh]"
           >
             <div className="flex items-center justify-between h-20 px-6 border-b border-border flex-none">
-              <span className="font-display text-lg">
-                Aethel<span className="text-accent">.</span>
-              </span>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden rounded-sm bg-white p-1">
+                  <img
+                    src="https://www.newpathconstruction.com/wp-content/uploads/2021/01/icon-min.png"
+                    alt="New Path Construction Logo"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="font-display text-lg tracking-tight font-bold">
+                  New Path<span className="text-accent">.</span>
+                </span>
+              </div>
               <button
                 onClick={() => setMobileOpen(false)}
                 className="w-10 h-10 flex items-center justify-center hover:text-accent transition-colors"
