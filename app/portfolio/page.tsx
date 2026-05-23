@@ -8,14 +8,14 @@ import { ArrowUpRight } from 'lucide-react';
 
 const categories = [
   { id: 'all', label: 'All' },
-  { id: 'restaurants', label: 'Typology I' },
-  { id: 'gas-stations', label: 'Typology II' },
-  { id: 'car-wash', label: 'Typology III' },
-  { id: 'industrial', label: 'Typology IV' },
-  { id: 'medical', label: 'Typology V' },
-  { id: 'multi-family', label: 'Typology VI' },
-  { id: 'retail', label: 'Typology VII' },
-  { id: 'self-storage', label: 'Typology VIII' },
+  { id: 'restaurants', label: 'Restaurants' },
+  { id: 'gas-stations', label: 'Gas Stations' },
+  { id: 'car-wash', label: 'Car Wash' },
+  { id: 'industrial', label: 'Industrial & Office' },
+  { id: 'medical', label: 'Medical' },
+  { id: 'multi-family', label: 'Multi-Family' },
+  { id: 'retail', label: 'Retail' },
+  { id: 'self-storage', label: 'Self-Storage' },
 ];
 
 const categoryToIndex: { [key: string]: number } = {
@@ -30,22 +30,23 @@ const categoryToIndex: { [key: string]: number } = {
 };
 
 const projects = [
-  { title: 'Structural Volume I', category: 'restaurants', location: 'North Sector', year: '2024' },
-  { title: 'Tectonic Grid III', category: 'restaurants', location: 'South Quad', year: '2023' },
-  { title: 'Programmatic Axis V', category: 'gas-stations', location: 'East Axis', year: '2024' },
-  { title: 'Volumetric Array II', category: 'gas-stations', location: 'West Terminal', year: '2023' },
-  { title: 'Geometric Assembly IX', category: 'car-wash', location: 'North Sector', year: '2024' },
-  { title: 'Spatial Sequence IV', category: 'car-wash', location: 'South Quad', year: '2023' },
-  { title: 'Substrate Monolith VI', category: 'industrial', location: 'East Axis', year: '2024' },
-  { title: 'Tectonic Interface VII', category: 'industrial', location: 'West Terminal', year: '2023' },
-  { title: 'Material System VIII', category: 'medical', location: 'North Sector', year: '2024' },
-  { title: 'Spectral Void X', category: 'medical', location: 'South Quad', year: '2023' },
-  { title: 'Concentric Core XI', category: 'multi-family', location: 'East Axis', year: '2024' },
-  { title: 'Bilateral Plan XII', category: 'multi-family', location: 'West Terminal', year: '2023' },
-  { title: 'Laminated Section XIII', category: 'retail', location: 'North Sector', year: '2024' },
-  { title: 'Slab Assembly XIV', category: 'retail', location: 'South Quad', year: '2023' },
-  { title: 'Tectonic Vessel XV', category: 'self-storage', location: 'East Axis', year: '2024' },
-  { title: 'Grid Void XVI', category: 'self-storage', location: 'West Terminal', year: '2023' },
+  { title: 'Starbucks Remodel', category: 'restaurants', location: 'Chicago, IL', year: '2024' },
+  { title: 'Dairy Queen Grill & Chill', category: 'restaurants', location: 'St. Charles, IL', year: '2023' },
+  { title: 'Jar Bar Restaurant', category: 'restaurants', location: 'Northbrook, IL', year: '2022' },
+  { title: 'BP Gas Station & Convenience', category: 'gas-stations', location: 'Phoenix, AZ', year: '2024' },
+  { title: 'Mango Express Fuel Station', category: 'gas-stations', location: 'Schiller Park, IL', year: '2023' },
+  { title: 'Mango Express Car Wash #2', category: 'car-wash', location: 'Schiller Park, IL', year: '2024' },
+  { title: 'Express Exterior Car Wash', category: 'car-wash', location: 'Scottsdale, AZ', year: '2023' },
+  { title: 'Xttrium Facility', category: 'industrial', location: 'Mt. Prospect, IL', year: '2024' },
+  { title: 'Ten Parkway North Office', category: 'industrial', location: 'Deerfield, IL', year: '2023' },
+  { title: 'Pet Suites', category: 'medical', location: 'Arlington Heights, IL', year: '2023' },
+  { title: 'Outpatient Surgery Center', category: 'medical', location: 'Scottsdale, AZ', year: '2024' },
+  { title: 'The Belmont Apartments', category: 'multi-family', location: 'Dallas, TX', year: '2023' },
+  { title: 'Vitruvian Park Residences', category: 'multi-family', location: 'Addison, TX', year: '2024' },
+  { title: 'Halo Heat Retail Outlet', category: 'retail', location: 'Aurora, IL', year: '2023' },
+  { title: 'Dunkin\' Retail Store', category: 'retail', location: 'Chicago, IL', year: '2024' },
+  { title: 'Extra Space Storage Facility', category: 'self-storage', location: 'Romeoville, IL', year: '2024' },
+  { title: 'Climate-Controlled Storage', category: 'self-storage', location: 'Bedford, TX', year: '2023' },
 ];
 
 export default function PortfolioPage() {

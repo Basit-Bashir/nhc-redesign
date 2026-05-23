@@ -6,9 +6,9 @@ import { PageHeader } from '@/components/page-header';
 import { ArrowUpRight, Check, MapPin } from 'lucide-react';
 
 const offices = [
-  { region: 'Midwest Sector', city: 'Regional Node 01', address: '1 Coordinate Street, Suite 285', location: 'St. Charles, IL 60174' },
-  { region: 'Southwest Sector', city: 'Regional Node 02', address: '4250 Vector Blvd. Suite 300', location: 'Scottsdale, AZ 85251' },
-  { region: 'Southern Sector', city: 'Regional Node 03', address: '1600 Grid Freeway, Floor 3', location: 'Bedford, TX 76022' },
+  { region: 'Midwest', city: 'Chicagoland', address: '1 Illinois Street, Suite 285', location: 'St. Charles, IL 60174' },
+  { region: 'Southwest', city: 'Phoenix Metro', address: '4250 N. Drinkwater Blvd. Suite 300', location: 'Scottsdale, AZ 85251' },
+  { region: 'South', city: 'Dallas–Fort Worth Metro', address: '1600 Airport Freeway, Floor 3', location: 'Bedford, TX 76022' },
 ];
 
 export default function ContactPage() {
@@ -24,9 +24,9 @@ export default function ContactPage() {
     <div className="bg-transparent relative z-10">
       <PageHeader
         eyebrow="Contact"
-        title="Establish contact"
-        italic="and project dialogue."
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        title="Let's start a"
+        italic="conversation."
+        description="Contact us for more information or to get in touch about a potential project. We look forward to working with you."
       />
 
       <section className="py-32 bg-transparent relative z-10">
@@ -100,18 +100,18 @@ export default function ContactPage() {
                 />
 
                 <div className="relative border-b border-border py-2">
-                  <label htmlFor="service" className="eyebrow text-xs text-accent block mb-2 font-mono">Typology interest</label>
+                  <label htmlFor="service" className="eyebrow text-xs text-accent block mb-2 font-mono">Service interest</label>
                   <select
                     id="service"
                     onFocus={() => setActiveField('service')}
                     onBlur={() => setActiveField(null)}
                     className="w-full bg-transparent py-2 focus:outline-none transition-colors appearance-none cursor-pointer font-sans text-base pr-8 text-foreground font-medium"
                   >
-                    <option className="bg-background dark:bg-neutral-900 text-foreground">Spatial Planning</option>
-                    <option className="bg-background dark:bg-neutral-900 text-foreground">Architectural Craft</option>
-                    <option className="bg-background dark:bg-neutral-900 text-foreground">Tectonic Science</option>
-                    <option className="bg-background dark:bg-neutral-900 text-foreground">Material Research</option>
-                    <option className="bg-background dark:bg-neutral-900 text-foreground">Other Typologies</option>
+                    <option className="bg-background dark:bg-neutral-900 text-foreground">General Contracting</option>
+                    <option className="bg-background dark:bg-neutral-900 text-foreground">Pre-Construction</option>
+                    <option className="bg-background dark:bg-neutral-900 text-foreground">Construction Management</option>
+                    <option className="bg-background dark:bg-neutral-900 text-foreground">Real Estate Advisory</option>
+                    <option className="bg-background dark:bg-neutral-900 text-foreground">Other Commercial Projects</option>
                   </select>
                   <div className="absolute right-0 bottom-4 pointer-events-none opacity-60">
                     <ArrowUpRight className="w-4 h-4 rotate-90" />
@@ -134,7 +134,7 @@ export default function ContactPage() {
                     onFocus={() => setActiveField('message')}
                     onBlur={() => setActiveField(null)}
                     className="w-full bg-transparent py-2 focus:outline-none transition-colors resize-none font-sans text-base text-foreground font-medium"
-                    placeholder="Scale, coordinates, parameter requirements..."
+                    placeholder="Tell us about your project, timeline, and requirements..."
                   />
                   {activeField === 'message' && (
                     <motion.div 
@@ -169,8 +169,11 @@ export default function ContactPage() {
             <div className="space-y-4">
               <p className="eyebrow text-accent">— Direct</p>
               <div className="space-y-4">
-                <a href="mailto:inquiries@aethel.design" className="block text-xl font-display hover:text-accent transition-colors link-underline w-fit">
-                  inquiries@aethel.design
+                <a href="mailto:info@newpathconstruction.com" className="block text-xl font-display hover:text-accent transition-colors link-underline w-fit">
+                  info@newpathconstruction.com
+                </a>
+                <a href="tel:630-283-3884" className="block text-xl font-display hover:text-accent transition-colors link-underline w-fit">
+                  +1 (630) 283-3884
                 </a>
               </div>
             </div>
@@ -200,10 +203,10 @@ export default function ContactPage() {
             </div>
 
             <div className="border-t border-border/80 pt-8 space-y-3">
-              <p className="eyebrow text-accent">— Calibration Standards</p>
+              <p className="eyebrow text-accent">— Licensure &amp; Status</p>
               <p className="text-sm opacity-70 leading-relaxed font-sans font-medium">
-                System Standard 00-11-22<br />
-                Certified Assembly Certification
+                AZ ROC License #327484<br />
+                MBE Certified minority business enterprise
               </p>
             </div>
           </motion.aside>

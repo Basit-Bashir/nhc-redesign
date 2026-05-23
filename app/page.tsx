@@ -9,109 +9,109 @@ import { Counter } from '@/components/counter';
 const services = [
   {
     num: '01',
-    title: 'Spatial Planning',
-    href: '/pre-construction',
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80',
+    title: 'General Contracting',
+    href: '/general-contracting',
+    image: 'https://www.newpathconstruction.com/wp-content/uploads/2021/03/Construction-above-2-1024x768.jpg',
     blurb:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      'New Path has completed hundreds of millions of dollars in General Contracting work in nearly every industry Vertical.',
   },
   {
     num: '02',
-    title: 'Architectural Craft',
-    href: '/general-contracting',
-    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80',
+    title: 'Pre-Construction',
+    href: '/pre-construction',
+    image: 'https://www.newpathconstruction.com/wp-content/uploads/2023/05/9FF32248-2B7D-4E2A-9A38-B463AD782660-768x1024.jpg',
     blurb:
-      'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      'Between our wall street roots and significant construction experience, New Path can help with everything from raising capital to finding tenants and developer partners.',
   },
   {
     num: '03',
-    title: 'Tectonic Science',
+    title: 'Construction Management',
     href: '/construction-management',
-    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=1200&q=80',
+    image: 'https://www.newpathconstruction.com/wp-content/uploads/2026/01/525780189_1224786436329630_4847205779204860387_n-768x1024.jpg',
     blurb:
-      'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      'If you are part of a tenant/landlord deal, New Path can step in to oversee the construction process to protect all stakeholders.',
   },
   {
     num: '04',
-    title: 'Material Research',
+    title: 'Real Estate Advisory',
     href: '/real-estate-advisory',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&q=80',
+    image: 'https://www.newpathconstruction.com/wp-content/uploads/2023/08/Newpath-1024x768.jpeg',
     blurb:
-      'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      'If you are part of a tenant/landlord deal, New Path can step in to oversee the construction process to protect all stakeholders.',
   },
 ];
 
 const verticals = [
   {
-    name: 'Typology Alpha',
+    name: 'Restaurants & Hospitality',
     image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80',
     href: '/portfolio?category=restaurants',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at porttitor sem. Aliquam erat volutpat.',
-    count: '95 Realized',
-    highlight: 'Archetype I',
+    description: 'High-end restaurant builds, cafes, and hospitality spaces. Our experience spans national franchises like Starbucks and Dunkin\' to bespoke local dining concepts.',
+    count: '75 Completed',
+    highlight: 'Starbucks, Dairy Queen, Dunkin\'',
     color: '#e09c50',
   },
   {
-    name: 'Typology Beta',
+    name: 'Gas & Service Stations',
     image: 'https://images.unsplash.com/photo-1527018601619-a508a2be00cd?w=800&q=80',
     href: '/portfolio?category=gas-stations',
-    description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.',
-    count: '62 Realized',
-    highlight: 'Archetype II',
+    description: 'Modern fueling terminals and convenience store facilities built for high capacity, utility integration, and compliance with all environmental standards.',
+    count: '50 Completed',
+    highlight: 'BP Fueling & Convenience',
     color: '#38bdf8',
   },
   {
-    name: 'Typology Gamma',
+    name: 'Express Car Washes',
     image: 'https://images.unsplash.com/photo-1605152276897-4f618f831968?w=800&q=80',
     href: '/portfolio?category=car-wash',
-    description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
-    count: '48 Realized',
-    highlight: 'Archetype III',
+    description: 'Advanced express exterior car wash systems engineered with sophisticated water reclamation technology, complex plumbing, and high-durability coatings.',
+    count: '40 Completed',
+    highlight: 'Mango Express Car Wash',
     color: '#60a5fa',
   },
   {
-    name: 'Typology Delta',
+    name: 'Industrial & Office',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
     href: '/portfolio?category=industrial',
-    description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    count: '110 Realized',
-    highlight: 'Archetype IV',
+    description: 'Scalable warehouse spaces, distribution hubs, and high-performance corporate offices designed to optimize operational workflows and long-term utility.',
+    count: '80 Completed',
+    highlight: 'Ten Parkway North, Xttrium',
     color: '#f97316',
   },
   {
-    name: 'Typology Epsilon',
+    name: 'Medical & Surgery Centers',
     image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&q=80',
     href: '/portfolio?category=medical',
-    description: 'Aenean sollicitudin lorem quis bibendum auctor. Nisi elit consequat ipsum, nec sagittis sem nibh id elit.',
-    count: '74 Realized',
-    highlight: 'Archetype V',
+    description: 'Clinical outpatient environments, specialized surgery centers, and veterinary facilities requiring complex HVAC filtration, layouts, and strict regulatory standards.',
+    count: '35 Completed',
+    highlight: 'Pet Suites Arlington Heights',
     color: '#2dd4bf',
   },
   {
-    name: 'Typology Zeta',
+    name: 'Multi-Family Housing',
     image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
     href: '/portfolio?category=multi-family',
-    description: 'Morbi accumsan ipsum velit. Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat.',
-    count: '93 Realized',
-    highlight: 'Archetype VI',
+    description: 'LEED-certified multi-family complexes, apartment buildings, and mixed-use urban villages designed to maximize tenant satisfaction and developer ROI.',
+    count: '60 Completed',
+    highlight: 'The Belmont, Vitruvian Park',
     color: '#facc15',
   },
   {
-    name: 'Typology Eta',
+    name: 'Retail Commercial',
     image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80',
     href: '/portfolio?category=retail',
-    description: 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.',
-    count: '142 Realized',
-    highlight: 'Archetype VII',
+    description: 'High-visibility retail locations, shopping centers, and multi-tenant commercial structures designed to draw in customers and elevate retail brands.',
+    count: '90 Completed',
+    highlight: 'Halo Heat Retail Center',
     color: '#fb7185',
   },
   {
-    name: 'Typology Theta',
+    name: 'Self-Storage Facilities',
     image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80',
     href: '/portfolio?category=self-storage',
-    description: 'Mauris in erat justo. Nullam ac urna eu felis dapibus condimentum sit amet a augue. Sed non neque elit.',
-    count: '54 Realized',
-    highlight: 'Archetype VIII',
+    description: 'Multi-story climate-controlled self-storage properties designed to optimize net rentable area, access control systems, and structural durability.',
+    count: '30 Completed',
+    highlight: 'Extra Space Storage',
     color: '#a78bfa',
   },
 ];
@@ -306,24 +306,24 @@ export default function HomePage() {
               className="flex items-center gap-3 mb-6"
             >
               <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <p className="eyebrow text-white/95">Boutique Design &amp; Craft Studio</p>
+              <p className="eyebrow text-white/95">General Contracting • Real Estate Advisor • Construction Management</p>
             </motion.div>
 
             {/* Editorial Serif & Sans Mix Heading */}
             <h1 className="display-heading text-5xl sm:text-7xl lg:text-8xl text-white mb-6 leading-[0.95] max-w-[15ch] tracking-tight">
               <span className="block overflow-hidden h-fit py-1">
                 <motion.span variants={heroWordRevealVariants} className="block">
-                  Forming <span className="italic text-accent">spaces,</span>
+                  New Path
                 </motion.span>
               </span>
               <span className="block overflow-hidden h-fit py-1">
                 <motion.span variants={heroWordRevealVariants} className="block">
-                  sculpting light,
+                  Construction &
                 </motion.span>
               </span>
               <span className="block overflow-hidden h-fit py-1">
                 <motion.span variants={heroWordRevealVariants} className="block">
-                  defining <span className="font-sans font-light text-white/95">landscapes.</span>
+                  <span className="italic text-accent">Consulting</span>
                 </motion.span>
               </span>
             </h1>
@@ -333,7 +333,7 @@ export default function HomePage() {
               variants={heroFadeUpVariants}
               className="text-sm sm:text-base text-white/75 max-w-xl font-sans leading-relaxed mb-8"
             >
-              A dialogue between structural rigor and material resonance. We create premium architectural forms and construct enduring spaces with deliberate restraint and geometric precision.
+              Your premier choice for a trusted, experienced, and reliable General Contractor. We approach every project with a seasoned perspective that breeds success.
             </motion.p>
 
             {/* Premium CTA Buttons */}
@@ -348,6 +348,8 @@ export default function HomePage() {
               >
                 <Link
                   href="/contact"
+                  onClick={(e) => e.preventDefault()}
+                  style={{ cursor: 'default' }}
                   className="inline-flex items-center px-8 py-4 bg-accent text-background font-mono text-xs uppercase tracking-wider rounded-full hover:bg-accent/90 transition-all duration-300 shadow-lg shadow-accent/15"
                 >
                   Start a project
@@ -361,6 +363,8 @@ export default function HomePage() {
               >
                 <Link
                   href="/portfolio"
+                  onClick={(e) => e.preventDefault()}
+                  style={{ cursor: 'default' }}
                   className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white font-mono text-xs uppercase tracking-wider rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
                 >
                   View Portfolio <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -388,22 +392,22 @@ export default function HomePage() {
         <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-black/45 backdrop-blur-sm border-t border-white/10 py-3.5 z-20 select-none">
           <div className="marquee animate-[marquee_24s_linear_infinite] text-white/50 font-mono text-[9px] sm:text-[10px] tracking-[0.22em] uppercase gap-16 items-center">
             <div className="flex shrink-0 items-center justify-around gap-16 min-w-full">
-              <span>Spatial Planning</span>
+              <span>General Contracting</span>
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Architectural Craft</span>
+              <span>Pre-Construction</span>
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Tectonic Science</span>
+              <span>Construction Management</span>
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Material Research</span>
+              <span>Real Estate Advisory</span>
             </div>
             <div className="flex shrink-0 items-center justify-around gap-16 min-w-full">
-              <span>Spatial Planning</span>
+              <span>General Contracting</span>
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Architectural Craft</span>
+              <span>Pre-Construction</span>
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Tectonic Science</span>
+              <span>Construction Management</span>
               <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Material Research</span>
+              <span>Real Estate Advisory</span>
             </div>
           </div>
         </div>
@@ -417,10 +421,10 @@ export default function HomePage() {
       >
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
-            { value: 850, suffix: '+', label: 'Concepts realized' },
-            { value: 12, suffix: '', label: 'Design systems', prefix: '' },
-            { value: 4, suffix: '', label: 'Global ateliers' },
-            { value: 100, suffix: '%', label: 'Standard certified' },
+            { value: 200, prefix: '$', suffix: 'M+', label: 'Work completed' },
+            { value: 15, suffix: '+', label: 'Years of experience' },
+            { value: 4, suffix: '', label: 'Core service areas' },
+            { value: 100, suffix: '%', label: 'Excellence committed' },
           ].map((stat, i) => (
             <div key={stat.label}>
               <div className="display-heading text-5xl md:text-6xl text-accent mb-2">
@@ -436,16 +440,18 @@ export default function HomePage() {
       <section ref={introRef} className="py-40 bg-transparent relative z-20">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-3">
-            <p className="eyebrow mb-4">— The Atelier</p>
+            <p className="eyebrow mb-4">— About Us</p>
           </div>
           <div className="lg:col-span-9">
             <ScrollHighlightText
               progress={introScroll}
-              text="Aethel is a multi-disciplinary architecture and spatial design atelier. Our work exists at the intersection of structural rigor and tactile warmth. We design not for immediate impact, but for enduring resonance, crafting environments that shape human experience."
+              text="New Path Construction is your premier choice for a trusted, experienced, and reliable General Contractor. With a rich tapestry of years in the industry, our reputation is solidified through our unwavering commitment to excellence. Our extensive experience forms the bedrock upon which we stand, enabling us to approach every project with a seasoned perspective that breeds success. What truly distinguishes us is our diverse portfolio, a testament to our versatility and adeptness across a wide spectrum of construction endeavors. From traditional projects to innovative and intricate ventures, our track record speaks volumes about our ability to adapt, excel, and consistently surpass expectations. When you choose New Path Construction, you're choosing a partner that brings not only expertise but also reliability to every project we undertake."
             />
             <div className="mt-12">
               <Link
                 href="/about"
+                onClick={(e) => e.preventDefault()}
+                style={{ cursor: 'default' }}
                 className="inline-flex items-center gap-2 link-underline text-accent font-mono text-xs uppercase tracking-wider"
               >
                 Learn about our vision <ArrowRight className="w-4 h-4" />
@@ -565,6 +571,8 @@ export default function HomePage() {
                             </p>
                             <Link
                               href={v.href}
+                              onClick={(e) => e.preventDefault()}
+                              style={{ cursor: 'default' }}
                               className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent link-underline"
                             >
                               Explore Sector
@@ -686,6 +694,8 @@ export default function HomePage() {
                           <div className="pt-2">
                             <Link
                               href={v.href}
+                              onClick={(e) => e.preventDefault()}
+                              style={{ cursor: 'default' }}
                               className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent link-underline"
                             >
                               Explore Sector <ArrowUpRight className="w-4 h-4" />
@@ -763,13 +773,15 @@ export default function HomePage() {
           style={{ scale: curtainScale, opacity: curtainOpacity }}
           className="max-w-[1600px] mx-auto px-6 lg:px-12 text-center relative z-10"
         >
-          <p className="eyebrow mb-8">— Inquire</p>
-          <h2 className="display-heading text-mega mb-12 max-w-[15ch] mx-auto">
-            Begin the design{' '}
-            <span className="italic text-accent">inquiry.</span>
+          <p className="eyebrow mb-8">— Contact</p>
+          <h2 className="display-heading text-mega mb-12 max-w-[20ch] mx-auto">
+            Let's start a{' '}
+            <span className="italic text-accent">conversation</span> about your next project.
           </h2>
           <Link
             href="/contact"
+            onClick={(e) => e.preventDefault()}
+            style={{ cursor: 'default' }}
             className="inline-flex items-center gap-3 px-10 py-5 bg-foreground text-background rounded-full text-lg hover:bg-accent transition-colors group"
           >
             Get in touch
@@ -863,6 +875,8 @@ function ServiceCard({ service, index, total, scrollYProgress }: ServiceCardProp
         <div className="pt-6 border-t border-border/50">
           <Link
             href={service.href}
+            onClick={(e) => e.preventDefault()}
+            style={{ cursor: 'default' }}
             className="group inline-flex items-center gap-2 font-mono text-sm uppercase tracking-wider text-accent link-underline"
           >
             Explore discipline

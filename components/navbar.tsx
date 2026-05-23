@@ -109,6 +109,10 @@ export default function Navbar() {
               >
                 <Link
                   href={item.href}
+                  onClick={(e) => {
+                    if (item.href !== '/') e.preventDefault();
+                  }}
+                  style={item.href !== '/' ? { cursor: 'default' } : undefined}
                   className="px-4 py-2 text-sm flex items-center gap-1 hover:text-accent transition-colors"
                 >
                   {item.name}
@@ -128,6 +132,8 @@ export default function Navbar() {
                           <Link
                             key={child.href}
                             href={child.href}
+                            onClick={(e) => e.preventDefault()}
+                            style={{ cursor: 'default' }}
                             className="block px-3 py-2 text-sm hover:bg-muted rounded-sm transition-colors"
                           >
                             {child.name}
@@ -146,6 +152,8 @@ export default function Navbar() {
             <ThemeToggle />
             <Link
               href="/contact"
+              onClick={(e) => e.preventDefault()}
+              style={{ cursor: 'default' }}
               className="hidden md:inline-flex items-center px-5 py-2 bg-foreground text-background text-sm rounded-full hover:bg-accent transition-colors"
             >
               Start a project
@@ -206,7 +214,14 @@ export default function Navbar() {
                     <div className="flex items-center justify-between">
                       <Link
                         href={item.href}
-                        onClick={() => setMobileOpen(false)}
+                        onClick={(e) => {
+                          if (item.href !== '/') {
+                            e.preventDefault();
+                          } else {
+                            setMobileOpen(false);
+                          }
+                        }}
+                        style={item.href !== '/' ? { cursor: 'default' } : undefined}
                         className="flex-1 py-4 text-2xl font-display hover:text-accent transition-colors"
                       >
                         {item.name}
@@ -245,7 +260,8 @@ export default function Navbar() {
                               <li key={child.href}>
                                 <Link
                                   href={child.href}
-                                  onClick={() => setMobileOpen(false)}
+                                  onClick={(e) => e.preventDefault()}
+                                  style={{ cursor: 'default' }}
                                   className="block py-2 text-base text-foreground/75 hover:text-accent transition-colors"
                                 >
                                   {child.name}
@@ -265,7 +281,8 @@ export default function Navbar() {
             <div className="p-6 border-t border-border flex-none bg-background">
               <Link
                 href="/contact"
-                onClick={() => setMobileOpen(false)}
+                onClick={(e) => e.preventDefault()}
+                style={{ cursor: 'default' }}
                 className="block w-full text-center py-4 bg-accent text-background font-medium rounded-full hover:bg-accent/90 transition-colors"
               >
                 Start a project
