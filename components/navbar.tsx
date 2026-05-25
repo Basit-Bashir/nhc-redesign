@@ -90,15 +90,15 @@ export default function Navbar() {
         <nav className="max-w-[1600px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden rounded-sm bg-white p-1">
+            <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden rounded-sm">
               <img
-                src="https://www.newpathconstruction.com/wp-content/uploads/2021/01/icon-min.png"
+                src="/images/logo.svg"
                 alt="New Path Construction Logo"
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="font-display text-lg tracking-tight font-bold hidden sm:block">
-              New Path<span className="text-accent">.</span>
+            <span className="font-display text-lg tracking-tight font-bold hidden sm:block text-foreground">
+              <span className="text-accent">N</span>ew <span className="text-accent">P</span>ath.
             </span>
           </Link>
 
@@ -185,15 +185,15 @@ export default function Navbar() {
           >
             <div className="flex items-center justify-between h-20 px-6 border-b border-border flex-none">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden rounded-sm bg-white p-1">
+                <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden rounded-sm">
                   <img
-                    src="https://www.newpathconstruction.com/wp-content/uploads/2021/01/icon-min.png"
+                    src="/images/logo.svg"
                     alt="New Path Construction Logo"
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <span className="font-display text-lg tracking-tight font-bold">
-                  New Path<span className="text-accent">.</span>
+                <span className="font-display text-lg tracking-tight font-bold text-foreground">
+                  <span className="text-accent">N</span>ew <span className="text-accent">P</span>ath.
                 </span>
               </div>
               <button

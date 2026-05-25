@@ -235,7 +235,7 @@ export default function HomePage() {
       {/* 1. HERO WITH CINEMATIC VIDEO BACKGROUND */}
       <section
         ref={heroRef}
-        className="relative h-screen min-h-[700px] w-full flex flex-col justify-end pb-24 overflow-hidden bg-background"
+        className="relative h-screen min-h-[700px] w-full flex flex-col justify-end pt-24 pb-12 sm:pb-16 lg:pb-20 overflow-hidden bg-background"
       >
         {/* Cinematic Loop Video Backdrop */}
         <motion.div
@@ -303,14 +303,14 @@ export default function HomePage() {
             {/* Eyebrow */}
             <motion.div
               variants={heroFadeUpVariants}
-              className="flex items-center gap-3 mb-6"
+              className="flex items-center gap-3 mb-4 sm:mb-6"
             >
               <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               <p className="eyebrow text-white/95">General Contracting • Real Estate Advisor • Construction Management</p>
             </motion.div>
 
             {/* Editorial Serif & Sans Mix Heading */}
-            <h1 className="display-heading text-5xl sm:text-7xl lg:text-8xl text-white mb-6 leading-[0.95] max-w-[15ch] tracking-tight">
+            <h1 className="display-heading text-4xl sm:text-6xl lg:text-7xl text-white mb-4 sm:mb-6 leading-[0.95] max-w-[15ch]">
               <span className="block overflow-hidden h-fit py-1">
                 <motion.span variants={heroWordRevealVariants} className="block">
                   New Path
@@ -331,7 +331,7 @@ export default function HomePage() {
             {/* Description Subheading */}
             <motion.p
               variants={heroFadeUpVariants}
-              className="text-base md:text-lg lg:text-xl text-white/75 max-w-2xl font-sans leading-relaxed mb-8"
+              className="text-base md:text-lg lg:text-xl text-white/75 max-w-2xl font-sans leading-relaxed mb-6 sm:mb-8"
             >
               Your premier choice for a trusted, experienced, and reliable General Contractor. We approach every project with a seasoned perspective that breeds success.
             </motion.p>
@@ -665,7 +665,7 @@ export default function HomePage() {
           <div className="lg:col-span-9">
             <ScrollHighlightText
               progress={introScroll}
-              text="New Path Construction is your premier choice for a trusted, experienced, and reliable General Contractor. With a rich tapestry of years in the industry, our reputation is solidified through our unwavering commitment to excellence. Our extensive experience forms the bedrock upon which we stand, enabling us to approach every project with a seasoned perspective that breeds success. What truly distinguishes us is our diverse portfolio, a testament to our versatility and adeptness across a wide spectrum of construction endeavors. From traditional projects to innovative and intricate ventures, our track record speaks volumes about our ability to adapt, excel, and consistently surpass expectations. When you choose New Path Construction, you're choosing a partner that brings not only expertise but also reliability to every project we undertake."
+              text="New Path Construction is your premier choice for a trusted and reliable General Contractor. Backed by a diverse portfolio and an unwavering commitment to excellence, we approach every project with a seasoned perspective that breeds success. From traditional projects to complex, innovative ventures, we consistently surpass expectations, bringing unmatched expertise and reliability to every build we undertake."
             />
             <div className="mt-12">
               <Link
@@ -797,7 +797,7 @@ function ScrollHighlightText({ text, progress }: ScrollHighlightTextProps) {
   const words = text.split(' ');
 
   return (
-    <p className="flex flex-wrap font-sans font-semibold tracking-tight text-3xl md:text-5xl lg:text-6xl leading-tight text-foreground bg-transparent">
+    <p className="flex flex-wrap font-sans font-semibold tracking-tight text-2xl md:text-3xl lg:text-4xl leading-tight text-foreground bg-transparent">
       {words.map((word, i) => {
         const start = i / words.length;
         const end = (i + 1.5) / words.length;
