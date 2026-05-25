@@ -99,7 +99,7 @@ export default function Footer() {
         </div>
 
         {/* Marquee */}
-        <div className="border-y border-background/20 py-6 overflow-hidden mb-12">
+        {/* <div className="border-y border-background/20 py-6 overflow-hidden mb-12">
           <div className="marquee whitespace-nowrap">
             {[1, 2].map((i) => (
               <div key={i} className="flex items-center gap-8 px-4 shrink-0">
@@ -112,7 +112,7 @@ export default function Footer() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Bottom row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pt-6 border-t border-background/20">

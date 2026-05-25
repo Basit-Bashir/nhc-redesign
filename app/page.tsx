@@ -195,22 +195,22 @@ export default function HomePage() {
     ['rgba(var(--background), 0)', 'rgba(var(--muted), 0.25)', 'rgba(var(--background), 0)']
   );
 
-  // 3. FIRM INTRO WORD-BY-WORD HIGHLIGHTING
+  // 3. VERTICALS SHOWCASE LOGIC (STATE-BASED HOVER)
+  // No longer scroll-hijacked. Interactivity is managed inline through hover and click states.
+
+  // 4. FIRM INTRO WORD-BY-WORD HIGHLIGHTING
   const introRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: introScroll } = useScroll({
     target: introRef,
     offset: ['start 80%', 'end 30%'],
   });
 
-  // 4. SERVICES DECK STACKING
+  // 5. SERVICES DECK STACKING
   const servicesRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress: servicesScroll } = useScroll({
     target: servicesRef,
     offset: ['start start', 'end end'],
   });
-
-  // 5. VERTICALS SHOWCASE LOGIC (STATE-BASED HOVER)
-  // No longer scroll-hijacked. Interactivity is managed inline through hover and click states.
 
   // 6. APPROACH ASYMMETRIC PARALLAX
   const approachRef = useRef<HTMLDivElement>(null);
@@ -262,7 +262,7 @@ export default function HomePage() {
               muted
               playsInline
               className="absolute inset-0 h-full w-full object-cover"
-              src="/videos/construction.mp4"
+              src="/videos/hero.mp4"
             />
           </motion.div>
           {/* Multi-layered cinematic gradient overlays for depth and extreme readability */}
@@ -331,7 +331,7 @@ export default function HomePage() {
             {/* Description Subheading */}
             <motion.p
               variants={heroFadeUpVariants}
-              className="text-sm sm:text-base text-white/75 max-w-xl font-sans leading-relaxed mb-8"
+              className="text-base md:text-lg lg:text-xl text-white/75 max-w-2xl font-sans leading-relaxed mb-8"
             >
               Your premier choice for a trusted, experienced, and reliable General Contractor. We approach every project with a seasoned perspective that breeds success.
             </motion.p>
@@ -388,27 +388,19 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Bottom Ticker Marquee */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden bg-black/45 backdrop-blur-sm border-t border-white/10 py-3.5 z-20 select-none">
-          <div className="marquee animate-[marquee_24s_linear_infinite] text-white/50 font-mono text-[9px] sm:text-[10px] tracking-[0.22em] uppercase gap-16 items-center">
-            <div className="flex shrink-0 items-center justify-around gap-16 min-w-full">
-              <span>General Contracting</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Pre-Construction</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Construction Management</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Real Estate Advisory</span>
-            </div>
-            <div className="flex shrink-0 items-center justify-around gap-16 min-w-full">
-              <span>General Contracting</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Pre-Construction</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Construction Management</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-              <span>Real Estate Advisory</span>
-            </div>
+        {/* Marquee */}
+        <div className="border-y border-background/20 py-3 overflow-hidden">
+          <div className="marquee whitespace-nowrap">
+            {[1, 2].map((i) => (
+              <div key={i} className="flex items-center gap-8 px-4 shrink-0">
+                {['General Contracting', 'Pre-Construction', 'Construction Management', 'Real Estate Advisory'].map((item) => (
+                  <span key={item} className="flex items-center gap-8 font-display text-3xl">
+                    {item}
+                    <span className="text-accent">✦</span>
+                  </span>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -436,55 +428,7 @@ export default function HomePage() {
         </div>
       </motion.section>
 
-      {/* 3. INTRO STATEMENT WITH WORD SCROLL HIGHLIGHTING */}
-      <section ref={introRef} className="py-40 bg-transparent relative z-20">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-3">
-            <p className="eyebrow mb-4">— About Us</p>
-          </div>
-          <div className="lg:col-span-9">
-            <ScrollHighlightText
-              progress={introScroll}
-              text="New Path Construction is your premier choice for a trusted, experienced, and reliable General Contractor. With a rich tapestry of years in the industry, our reputation is solidified through our unwavering commitment to excellence. Our extensive experience forms the bedrock upon which we stand, enabling us to approach every project with a seasoned perspective that breeds success. What truly distinguishes us is our diverse portfolio, a testament to our versatility and adeptness across a wide spectrum of construction endeavors. From traditional projects to innovative and intricate ventures, our track record speaks volumes about our ability to adapt, excel, and consistently surpass expectations. When you choose New Path Construction, you're choosing a partner that brings not only expertise but also reliability to every project we undertake."
-            />
-            <div className="mt-12">
-              <Link
-                href="/about"
-                onClick={(e) => e.preventDefault()}
-                style={{ cursor: 'default' }}
-                className="inline-flex items-center gap-2 link-underline text-accent font-mono text-xs uppercase tracking-wider"
-              >
-                Learn about our vision <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. SERVICES — STICKY OVERLAPPING CARDS */}
-      <section ref={servicesRef} className="relative py-24 bg-transparent">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 mb-20">
-          <p className="eyebrow mb-4">— Disciplines</p>
-          <h2 className="display-heading text-huge max-w-3xl">
-            Core <span className="italic text-accent">disciplines.</span>
-          </h2>
-        </div>
-
-        {/* Card deck track */}
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 space-y-12 bg-transparent">
-          {services.map((service, i) => (
-            <ServiceCard
-              key={service.title}
-              service={service}
-              index={i}
-              total={services.length}
-              scrollYProgress={servicesScroll}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* 5. TYPOLOGIES SHOWCASE */}
+      {/* 3. TYPOLOGIES SHOWCASE */}
       <section className="py-24 bg-transparent relative z-20">
         {/* Header area */}
         <div className="relative z-10 max-w-[1600px] mx-auto w-full px-6 lg:px-12 flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16 bg-transparent">
@@ -494,7 +438,7 @@ export default function HomePage() {
               Eight <span className="italic text-accent">archetypes.</span> One system.
             </h2>
           </div>
-          <p className="text-sm opacity-60 max-w-sm font-sans mb-1 text-foreground">
+          <p className="text-sm md:text-base lg:text-lg opacity-60 max-w-md font-sans mb-1 text-foreground">
             A selection of projects exploring diverse typologies, scales, and programmatic requirements.
           </p>
         </div>
@@ -566,7 +510,7 @@ export default function HomePage() {
                             <h3 className="display-heading text-3xl md:text-4xl text-white font-normal leading-tight mb-4">
                               {v.name}
                             </h3>
-                            <p className="text-sm text-white/80 font-sans leading-relaxed mb-6 max-w-md">
+                            <p className="text-sm md:text-base lg:text-lg text-white/80 font-sans leading-relaxed mb-6 max-w-lg">
                               {v.description}
                             </p>
                             <Link
@@ -687,7 +631,7 @@ export default function HomePage() {
                                 {v.highlight}
                               </span>
                             </div>
-                            <p className="text-sm opacity-80 leading-relaxed font-sans">
+                            <p className="text-sm sm:text-base opacity-80 leading-relaxed font-sans">
                               {v.description}
                             </p>
                           </div>
@@ -709,6 +653,54 @@ export default function HomePage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* 4. INTRO STATEMENT WITH WORD SCROLL HIGHLIGHTING */}
+      <section ref={introRef} className="py-40 bg-transparent relative z-20">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-3">
+            <p className="eyebrow mb-4">— About Us</p>
+          </div>
+          <div className="lg:col-span-9">
+            <ScrollHighlightText
+              progress={introScroll}
+              text="New Path Construction is your premier choice for a trusted, experienced, and reliable General Contractor. With a rich tapestry of years in the industry, our reputation is solidified through our unwavering commitment to excellence. Our extensive experience forms the bedrock upon which we stand, enabling us to approach every project with a seasoned perspective that breeds success. What truly distinguishes us is our diverse portfolio, a testament to our versatility and adeptness across a wide spectrum of construction endeavors. From traditional projects to innovative and intricate ventures, our track record speaks volumes about our ability to adapt, excel, and consistently surpass expectations. When you choose New Path Construction, you're choosing a partner that brings not only expertise but also reliability to every project we undertake."
+            />
+            <div className="mt-12">
+              <Link
+                href="/about"
+                onClick={(e) => e.preventDefault()}
+                style={{ cursor: 'default' }}
+                className="inline-flex items-center gap-2 link-underline text-accent font-mono text-xs uppercase tracking-wider"
+              >
+                Learn about our vision <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. SERVICES — STICKY OVERLAPPING CARDS */}
+      <section ref={servicesRef} className="relative py-24 bg-transparent">
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 mb-20">
+          <p className="eyebrow mb-4">— Disciplines</p>
+          <h2 className="display-heading text-huge max-w-3xl">
+            Core <span className="italic text-accent">disciplines.</span>
+          </h2>
+        </div>
+
+        {/* Card deck track */}
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 space-y-12 bg-transparent">
+          {services.map((service, i) => (
+            <ServiceCard
+              key={service.title}
+              service={service}
+              index={i}
+              total={services.length}
+              scrollYProgress={servicesScroll}
+            />
+          ))}
         </div>
       </section>
 
@@ -734,7 +726,7 @@ export default function HomePage() {
               <div className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md">
                 <p className="font-display text-accent text-3xl mb-4">01</p>
                 <h3 className="display-heading text-2xl mb-4">Spatial Clarity</h3>
-                <p className="opacity-70 leading-relaxed text-sm font-sans">
+                <p className="opacity-70 leading-relaxed text-sm md:text-base lg:text-lg font-sans">
                   Every gesture is considered. We organize volumes and circulation to optimize natural light, sightlines, and functional efficiency.
                 </p>
               </div>
@@ -745,7 +737,7 @@ export default function HomePage() {
               <div className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md">
                 <p className="font-display text-accent text-3xl mb-4">02</p>
                 <h3 className="display-heading text-2xl mb-4">Material Honesty</h3>
-                <p className="opacity-70 leading-relaxed text-sm font-sans">
+                <p className="opacity-70 leading-relaxed text-sm md:text-base lg:text-lg font-sans">
                   We select materials for their raw, authentic qualities—letting stone, timber, steel, and concrete express their natural texture, aging gracefully over time.
                 </p>
               </div>
@@ -758,7 +750,7 @@ export default function HomePage() {
               <div className="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-md">
                 <p className="font-display text-accent text-3xl mb-4">03</p>
                 <h3 className="display-heading text-2xl mb-4">Tactile Precision</h3>
-                <p className="opacity-70 leading-relaxed text-sm font-sans">
+                <p className="opacity-70 leading-relaxed text-sm md:text-base lg:text-lg font-sans">
                   A building is experienced through touch. We obsess over the details—the alignment of joints, the reveal of thresholds, the warmth of handrails.
                 </p>
               </div>
@@ -805,7 +797,7 @@ function ScrollHighlightText({ text, progress }: ScrollHighlightTextProps) {
   const words = text.split(' ');
 
   return (
-    <p className="flex flex-wrap display-heading text-3xl md:text-5xl lg:text-6xl leading-tight text-foreground bg-transparent">
+    <p className="flex flex-wrap font-sans font-semibold tracking-tight text-3xl md:text-5xl lg:text-6xl leading-tight text-foreground bg-transparent">
       {words.map((word, i) => {
         const start = i / words.length;
         const end = (i + 1.5) / words.length;
@@ -867,7 +859,7 @@ function ServiceCard({ service, index, total, scrollYProgress }: ServiceCardProp
           <h3 className="display-heading text-4xl lg:text-6xl text-accent mb-6">
             {service.title}
           </h3>
-          <p className="opacity-70 leading-relaxed text-base max-w-xl font-sans text-foreground">
+          <p className="opacity-70 leading-relaxed text-base md:text-lg lg:text-xl max-w-xl font-sans text-foreground">
             {service.blurb}
           </p>
         </div>

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
+import { Bebas_Neue, Inter, JetBrains_Mono } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
@@ -14,7 +14,8 @@ const GlobalCanvas = dynamic(() => import('@/components/GlobalCanvas'), {
   ssr: false,
 });
 
-const display = Fraunces({
+const display = Bebas_Neue({
+  weight: '400',
   subsets: ['latin'],
   variable: '--font-display',
   display: 'swap',
