@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Phone, Mail } from 'lucide-react';
 
 const offices = [
   {
@@ -25,11 +25,9 @@ const offices = [
   },
 ];
 
-const socials = [
-  { name: 'Facebook', href: 'https://www.facebook.com/newpathconstruction/' },
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/new-path-construction-and-consulting/' },
-  { name: 'Instagram', href: 'https://www.instagram.com/npconstructionandconsulting/' },
-  { name: 'YouTube', href: 'https://www.youtube.com/channel/UC5iIOZS7RVtetzBixAl6elw' },
+const footerLinks = [
+  { name: 'Privacy Policy', href: '/privacy-policy' },
+  { name: 'Terms & Conditions', href: '/terms-conditions' },
 ];
 
 export default function Footer() {
@@ -54,24 +52,24 @@ export default function Footer() {
             <p className="text-xl mb-8 leading-relaxed opacity-80 font-sans">
               Contact us for more information or to discuss your next project.
             </p>
-            <div className="space-y-3">
+            <div className="flex flex-col gap-3">
               <a
                 href="tel:630-283-3884"
-                className="flex items-center gap-3 text-2xl font-display link-underline w-fit"
+                className="!flex items-center gap-3 text-2xl font-display link-underline w-fit"
               >
+                <Phone className="w-5 h-5 text-accent" />
                 +1 (630) 283-3884
               </a>
               <a
                 href="mailto:info@newpathconstruction.com"
-                className="flex items-center gap-3 text-2xl font-display link-underline w-fit"
+                className="!flex items-center gap-3 text-2xl font-display link-underline w-fit"
               >
+                <Mail className="w-5 h-5 text-accent" />
                 info@newpathconstruction.com
               </a>
             </div>
             <Link
               href="/contact"
-              onClick={(e) => e.preventDefault()}
-              style={{ cursor: 'default' }}
               className="inline-flex items-center gap-2 mt-10 px-6 py-3 bg-accent text-foreground rounded-full hover:bg-background hover:text-foreground transition-colors"
             >
               Start a conversation
@@ -98,21 +96,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Marquee */}
-        {/* <div className="border-y border-background/20 py-6 overflow-hidden mb-12">
-          <div className="marquee whitespace-nowrap">
-            {[1, 2].map((i) => (
-              <div key={i} className="flex items-center gap-8 px-4 shrink-0">
-                {['General Contracting', 'Pre-Construction', 'Construction Management', 'Real Estate Advisory'].map((item) => (
-                  <span key={item} className="flex items-center gap-8 font-display text-3xl">
-                    {item}
-                    <span className="text-accent">✦</span>
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div> */}
+
 
         {/* Bottom row */}
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pt-6 border-t border-background/20">
@@ -120,14 +104,16 @@ export default function Footer() {
             © {new Date().getFullYear()} New Path Construction &amp; Consulting. AZ ROC License #327484
           </p>
           <div className="flex flex-wrap items-center gap-6">
-            {socials.map((s) => (
-              <a
-                key={s.name}
-                href={s.href}
+            {footerLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={(e) => e.preventDefault()}
+                style={{ cursor: 'default' }}
                 className="text-xs link-underline opacity-80 hover:opacity-100 font-mono"
               >
-                {s.name}
-              </a>
+                {link.name}
+              </Link>
             ))}
           </div>
         </div>

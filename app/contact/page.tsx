@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { PageHeader } from '@/components/page-header';
-import { ArrowUpRight, Check, MapPin } from 'lucide-react';
+import { ArrowUpRight, Check, MapPin, ChevronDown } from 'lucide-react';
 
 const offices = [
   { region: 'Midwest', city: 'Chicagoland', address: '1 Illinois Street, Suite 285', location: 'St. Charles, IL 60174' },
@@ -14,6 +14,15 @@ const offices = [
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [activeField, setActiveField] = useState<string | null>(null);
+  const [selectedService, setSelectedService] = useState('General Contracting');
+  const [serviceDropdownOpen, setServiceDropdownOpen] = useState(false);
+  const servicesList = [
+    'General Contracting',
+    'Pre-Construction',
+    'Construction Management',
+    'Real Estate Advisory',
+    'Other Commercial Projects',
+  ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,7 +73,7 @@ export default function ContactPage() {
                 </p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-10">
+              <form onSubmit={handleSubmit} className="border border-border/50 rounded-3xl p-8 md:p-12 bg-card/45 backdrop-blur-lg shadow-2xl space-y-10">
                 <div className="grid sm:grid-cols-2 gap-8">
                   <FormField 
                     id="first" 
@@ -100,22 +109,55 @@ export default function ContactPage() {
                 />
 
                 <div className="relative border-b border-border py-2">
-                  <label htmlFor="service" className="eyebrow text-xs text-accent block mb-2 font-mono">Service interest</label>
-                  <select
-                    id="service"
-                    onFocus={() => setActiveField('service')}
-                    onBlur={() => setActiveField(null)}
-                    className="w-full bg-transparent py-2 focus:outline-none transition-colors appearance-none cursor-pointer font-sans text-base pr-8 text-foreground font-medium"
+                  <span className="eyebrow text-xs text-accent block mb-2 font-mono">Service interest</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setServiceDropdownOpen(!serviceDropdownOpen);
+                      setActiveField(serviceDropdownOpen ? null : 'service');
+                    }}
+                    onBlur={() => {
+                      setTimeout(() => {
+                        setServiceDropdownOpen(false);
+                        setActiveField(null);
+                      }, 150);
+                    }}
+                    className="w-full text-left bg-transparent py-2 focus:outline-none transition-colors cursor-pointer font-sans text-base pr-8 text-foreground font-medium flex items-center justify-between"
                   >
-                    <option className="bg-background dark:bg-neutral-900 text-foreground">General Contracting</option>
-                    <option className="bg-background dark:bg-neutral-900 text-foreground">Pre-Construction</option>
-                    <option className="bg-background dark:bg-neutral-900 text-foreground">Construction Management</option>
-                    <option className="bg-background dark:bg-neutral-900 text-foreground">Real Estate Advisory</option>
-                    <option className="bg-background dark:bg-neutral-900 text-foreground">Other Commercial Projects</option>
-                  </select>
-                  <div className="absolute right-0 bottom-4 pointer-events-none opacity-60">
-                    <ArrowUpRight className="w-4 h-4 rotate-90" />
-                  </div>
+                    <span>{selectedService}</span>
+                    <ChevronDown className={`w-4 h-4 opacity-60 transition-transform duration-300 ${serviceDropdownOpen ? 'rotate-180 text-accent' : ''}`} />
+                  </button>
+                  <input type="hidden" name="service" value={selectedService} />
+                  <AnimatePresence>
+                    {serviceDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                        transition={{ duration: 0.15 }}
+                        className="absolute left-0 right-0 top-full mt-2 bg-card/95 border border-border/80 rounded-2xl p-2 shadow-2xl backdrop-blur-xl z-30 space-y-1"
+                      >
+                        {servicesList.map((service) => (
+                          <button
+                            key={service}
+                            type="button"
+                            onMouseDown={() => {
+                              setSelectedService(service);
+                              setServiceDropdownOpen(false);
+                            }}
+                            className={`w-full text-left px-4 py-3 text-base rounded-xl transition-colors flex items-center justify-between ${
+                              selectedService === service
+                                ? 'bg-accent/10 text-accent font-semibold'
+                                : 'hover:bg-muted text-foreground/80 hover:text-foreground'
+                            }`}
+                          >
+                            <span>{service}</span>
+                            {selectedService === service && <Check className="w-4 h-4 text-accent" />}
+                          </button>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                   {activeField === 'service' && (
                     <motion.div 
                       layoutId="input-focus" 
@@ -168,7 +210,7 @@ export default function ContactPage() {
           >
             <div className="space-y-4">
               <p className="eyebrow text-accent">— Direct</p>
-              <div className="space-y-4">
+              <div className="flex flex-col gap-4">
                 <a href="mailto:info@newpathconstruction.com" className="block text-xl font-display hover:text-accent transition-colors link-underline w-fit">
                   info@newpathconstruction.com
                 </a>

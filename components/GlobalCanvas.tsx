@@ -71,19 +71,18 @@ export default function GlobalCanvas() {
     const colors = new Float32Array(count * 3);
     const sizes = new Float32Array(count);
 
-    // Create a circular glowing texture programmatically
+    // Create a circular sharp texture programmatically
     const createCircleTexture = () => {
       const canvas = document.createElement('canvas');
       canvas.width = 32;
       canvas.height = 32;
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
-        gradient.addColorStop(0, 'rgba(255,255,255,1)');
-        gradient.addColorStop(0.3, 'rgba(255,255,255,0.7)');
-        gradient.addColorStop(1, 'rgba(255,255,255,0)');
-        ctx.fillStyle = gradient;
-        ctx.fillRect(0, 0, 32, 32);
+        ctx.clearRect(0, 0, 32, 32);
+        ctx.beginPath();
+        ctx.arc(16, 16, 8, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,255,255,1)';
+        ctx.fill();
       }
       return new THREE.CanvasTexture(canvas);
     };
@@ -173,11 +172,11 @@ export default function GlobalCanvas() {
     geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
     const material = new THREE.PointsMaterial({
-      size: 0.8,
+      size: 0.55,
       vertexColors: true,
       transparent: true,
-      opacity: 0.6,
-      blending: THREE.AdditiveBlending,
+      opacity: 0.7,
+      blending: THREE.NormalBlending,
       depthWrite: false,
       map: particleTexture,
     });
@@ -280,7 +279,7 @@ export default function GlobalCanvas() {
           
           // Color points: 12% golden accents, 88% default base
           if (i % 8 === 0) {
-            tColor = isDark ? CATEGORY_COLORS[0] : new THREE.Color('#b47b30');
+            tColor = CATEGORY_COLORS[0];
           }
         } else if (mode === 1) {
           // About mode: Concentric architectural cubes

@@ -235,7 +235,7 @@ export default function HomePage() {
       {/* 1. HERO WITH CINEMATIC VIDEO BACKGROUND */}
       <section
         ref={heroRef}
-        className="relative h-screen min-h-[700px] w-full flex flex-col justify-end pt-24 pb-12 sm:pb-16 lg:pb-20 overflow-hidden bg-background"
+        className="relative h-[90vh] lg:h-[85vh] min-h-[650px] max-h-[800px] lg:max-h-[850px] xl:max-h-[900px] w-full flex flex-col justify-center pt-32 pb-24 overflow-hidden bg-background"
       >
         {/* Cinematic Loop Video Backdrop */}
         <motion.div
@@ -266,7 +266,7 @@ export default function HomePage() {
             />
           </motion.div>
           {/* Multi-layered cinematic gradient overlays for depth and extreme readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-background z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/20 to-background z-10 pointer-events-none" />
           {/* <div className="absolute inset-0 bg-black/50 backdrop-blur-[0.5px] z-10 pointer-events-none" /> */}
         </motion.div>
 
@@ -348,8 +348,6 @@ export default function HomePage() {
               >
                 <Link
                   href="/contact"
-                  onClick={(e) => e.preventDefault()}
-                  style={{ cursor: 'default' }}
                   className="inline-flex items-center px-8 py-4 bg-accent text-background font-mono text-xs uppercase tracking-wider rounded-full hover:bg-accent/90 transition-all duration-300 shadow-lg shadow-accent/15"
                 >
                   Start a project
@@ -375,7 +373,7 @@ export default function HomePage() {
         </div>
 
         {/* Scroll down mouse indicator */}
-        <div className="absolute bottom-16 left-6 lg:left-12 z-20 hidden sm:flex items-center gap-4">
+        <div className="absolute bottom-28 left-6 lg:left-12 z-20 hidden sm:flex items-center gap-4">
           <div className="flex flex-col items-center gap-2">
             <span className="font-mono text-[9px] uppercase tracking-widest text-white/45 [writing-mode:vertical-lr] rotate-180 mb-2">
               Scroll to explore
@@ -389,12 +387,12 @@ export default function HomePage() {
         </div>
 
         {/* Marquee */}
-        <div className="border-y border-background/20 py-3 overflow-hidden">
+        <div className="absolute bottom-0 left-0 right-0 z-20 w-full border-y border-white/10 py-4 overflow-hidden bg-black/25 backdrop-blur-[2px]">
           <div className="marquee whitespace-nowrap">
             {[1, 2].map((i) => (
               <div key={i} className="flex items-center gap-8 px-4 shrink-0">
                 {['General Contracting', 'Pre-Construction', 'Construction Management', 'Real Estate Advisory'].map((item) => (
-                  <span key={item} className="flex items-center gap-8 font-display text-3xl">
+                  <span key={item} className="flex items-center gap-8 font-display text-2xl lg:text-3xl text-white/90">
                     {item}
                     <span className="text-accent">✦</span>
                   </span>
@@ -656,7 +654,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. INTRO STATEMENT WITH WORD SCROLL HIGHLIGHTING */}
+      {/* 4. CTA / CURTAIN REVEAL */}
+      <section ref={curtainRef} className="relative py-40 bg-transparent overflow-hidden">
+        <motion.div
+          style={{ scale: curtainScale, opacity: curtainOpacity }}
+          className="max-w-[1600px] mx-auto px-6 lg:px-12 text-center relative z-10"
+        >
+          <p className="eyebrow mb-8">— Contact</p>
+          <h2 className="display-heading text-mega mb-12 max-w-[20ch] mx-auto">
+            Let's start a{' '}
+            <span className="italic text-accent">conversation</span> about your next project.
+          </h2>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-foreground text-background rounded-full text-lg hover:bg-accent transition-colors group"
+          >
+            Get in touch
+            <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform" />
+          </Link>
+        </motion.div>
+      </section>
+
+      {/* 5. INTRO STATEMENT WITH WORD SCROLL HIGHLIGHTING */}
       <section ref={introRef} className="py-40 bg-transparent relative z-20">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-3">
@@ -681,7 +700,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. SERVICES — STICKY OVERLAPPING CARDS */}
+      {/* 6. SERVICES — STICKY OVERLAPPING CARDS */}
       <section ref={servicesRef} className="relative py-24 bg-transparent">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 mb-20">
           <p className="eyebrow mb-4">— Disciplines</p>
@@ -704,11 +723,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 6. APPROACH — ASYMMETRIC PARALLAX COLUMNS */}
+      {/* 7. APPROACH — ASYMMETRIC PARALLAX COLUMNS */}
       <section ref={approachRef} className="bg-foreground text-background py-32 overflow-hidden relative z-20">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <p className="eyebrow mb-6 text-accent">— Philosophy</p>
-          <h2 className="display-heading text-huge mb-24 max-w-4xl">
+          <h2 className="display-heading text-huge mb-24 max-w-6xl">
             Guided by fundamental principles:{' '}
             <span className="italic text-accent">scale, material integrity, and spatial rhythm.</span>
           </h2>
@@ -759,28 +778,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. CTA / CURTAIN REVEAL FOOTER */}
-      <section ref={curtainRef} className="relative py-40 bg-transparent overflow-hidden">
-        <motion.div
-          style={{ scale: curtainScale, opacity: curtainOpacity }}
-          className="max-w-[1600px] mx-auto px-6 lg:px-12 text-center relative z-10"
-        >
-          <p className="eyebrow mb-8">— Contact</p>
-          <h2 className="display-heading text-mega mb-12 max-w-[20ch] mx-auto">
-            Let's start a{' '}
-            <span className="italic text-accent">conversation</span> about your next project.
-          </h2>
-          <Link
-            href="/contact"
-            onClick={(e) => e.preventDefault()}
-            style={{ cursor: 'default' }}
-            className="inline-flex items-center gap-3 px-10 py-5 bg-foreground text-background rounded-full text-lg hover:bg-accent transition-colors group"
-          >
-            Get in touch
-            <ArrowUpRight className="w-5 h-5 group-hover:rotate-45 transition-transform" />
-          </Link>
-        </motion.div>
-      </section>
     </div>
   );
 }
@@ -851,20 +848,20 @@ function ServiceCard({ service, index, total, scrollYProgress }: ServiceCardProp
         y,
         top: `calc(12vh + ${index * 24}px)`,
       }}
-      className="sticky w-full max-w-[1400px] mx-auto h-[65vh] bg-card/65 border border-border/80 rounded-3xl p-8 lg:p-12 shadow-2xl backdrop-blur-md flex flex-col md:grid md:grid-cols-12 gap-8 items-stretch overflow-hidden"
+      className="sticky w-full max-w-[1400px] mx-auto h-[50vh] max-h-[380px] lg:max-h-[420px] xl:max-h-[450px] min-h-[320px] bg-card/65 border border-border/80 rounded-3xl p-6 lg:p-8 shadow-2xl backdrop-blur-md flex flex-col md:grid md:grid-cols-12 gap-6 lg:gap-8 items-stretch overflow-hidden"
     >
       <div className="col-span-7 flex flex-col justify-between">
         <div>
           <span className="font-mono text-sm opacity-50 mb-2 block">{service.num}</span>
-          <h3 className="display-heading text-4xl lg:text-6xl text-accent mb-6">
+          <h3 className="display-heading text-3xl lg:text-5xl text-accent mb-4">
             {service.title}
           </h3>
-          <p className="opacity-70 leading-relaxed text-base md:text-lg lg:text-xl max-w-xl font-sans text-foreground">
+          <p className="opacity-70 leading-relaxed text-sm lg:text-base max-w-xl font-sans text-foreground">
             {service.blurb}
           </p>
         </div>
 
-        <div className="pt-6 border-t border-border/50">
+        <div className="pt-4 border-t border-border/50">
           <Link
             href={service.href}
             onClick={(e) => e.preventDefault()}

@@ -92,7 +92,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden rounded-sm">
               <img
-                src="/images/logo.svg"
+                src="/images/logo.png"
                 alt="New Path Construction Logo"
                 className="w-full h-full object-contain"
               />
@@ -117,10 +117,10 @@ export default function Navbar() {
                     if (item.href !== '/') e.preventDefault();
                   }}
                   style={item.href !== '/' ? { cursor: 'default' } : undefined}
-                  className="px-4 py-2 text-sm flex items-center gap-1 hover:text-accent transition-colors"
+                  className="px-4 py-2 text-base font-medium flex items-center gap-1 hover:text-accent transition-colors"
                 >
                   {item.name}
-                  {item.children && <ChevronDown className="w-3 h-3" />}
+                  {item.children && <ChevronDown className="w-4 h-4" />}
                 </Link>
                 <AnimatePresence>
                   {item.children && openDropdown === item.name && (
@@ -138,7 +138,7 @@ export default function Navbar() {
                             href={child.href}
                             onClick={(e) => e.preventDefault()}
                             style={{ cursor: 'default' }}
-                            className="block px-3 py-2 text-sm hover:bg-muted rounded-sm transition-colors"
+                            className="block px-3 py-2 text-base hover:bg-muted rounded-sm transition-colors"
                           >
                             {child.name}
                           </Link>
@@ -156,9 +156,7 @@ export default function Navbar() {
             <ThemeToggle />
             <Link
               href="/contact"
-              onClick={(e) => e.preventDefault()}
-              style={{ cursor: 'default' }}
-              className="hidden md:inline-flex items-center px-5 py-2 bg-foreground text-background text-sm rounded-full hover:bg-accent transition-colors"
+              className="hidden md:inline-flex items-center px-6 py-2.5 bg-foreground text-background text-base font-medium rounded-full hover:bg-accent transition-colors"
             >
               Start a project
             </Link>
@@ -187,7 +185,7 @@ export default function Navbar() {
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden rounded-sm">
                   <img
-                    src="/images/logo.svg"
+                    src="/images/logo.png"
                     alt="New Path Construction Logo"
                     className="w-full h-full object-contain"
                   />
@@ -294,8 +292,6 @@ export default function Navbar() {
             <div className="p-6 border-t border-border flex-none bg-background">
               <Link
                 href="/contact"
-                onClick={(e) => e.preventDefault()}
-                style={{ cursor: 'default' }}
                 className="block w-full text-center py-4 bg-accent text-background font-medium rounded-full hover:bg-accent/90 transition-colors"
               >
                 Start a project
