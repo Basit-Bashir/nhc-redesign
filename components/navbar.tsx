@@ -13,7 +13,7 @@ const navigation = [
     name: 'About',
     href: '/about',
     children: [
-      { name: 'About New Path', href: '/about' },
+      { name: 'About New Path Construction', href: '/about' },
       { name: 'About Our Team', href: '/about-our-team' },
     ],
   },
@@ -98,7 +98,7 @@ export default function Navbar() {
               />
             </div>
             <span className="font-display text-lg tracking-tight font-bold hidden sm:block text-foreground">
-              <span className="text-accent">N</span>ew <span className="text-accent">P</span>ath.
+              <span className="text-accent">N</span>ew <span className="text-accent">P</span>ath <span className="text-accent">C</span>onstruction.
             </span>
           </Link>
 
@@ -191,7 +191,7 @@ export default function Navbar() {
                   />
                 </div>
                 <span className="font-display text-lg tracking-tight font-bold text-foreground">
-                  <span className="text-accent">N</span>ew <span className="text-accent">P</span>ath.
+                  <span className="text-accent">N</span>ew <span className="text-accent">P</span>ath <span className="text-accent">C</span>onstruction.
                 </span>
               </div>
               <button
