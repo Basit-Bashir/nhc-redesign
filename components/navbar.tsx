@@ -4,8 +4,9 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu as MenuIcon, X, ChevronDown } from 'lucide-react';
 import { ThemeToggle } from './theme-toggle';
+import { Menu, MenuItem, HoveredLink } from './ui/navbar-menu';
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -50,7 +51,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [openDropdown, setOpenDropdown] = React.useState<string | null>(null);
-  const [mobileDropdown, setMobileDropdown] = React.useState<string | null>(null);
   const pathname = usePathname();
 
   React.useEffect(() => {
@@ -61,19 +61,7 @@ export default function Navbar() {
 
   React.useEffect(() => {
     setMobileOpen(false);
-    setMobileDropdown(null);
   }, [pathname]);
-
-  React.useEffect(() => {
-    if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileOpen]);
 
   return (
     <>
@@ -81,75 +69,73 @@ export default function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? 'bg-background/80 backdrop-blur-xl border-b border-border'
-            : 'bg-transparent'
-        }`}
+        className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4 pointer-events-none"
       >
-        <nav className="max-w-[1600px] mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+        <nav
+          className={`w-full max-w-[1400px] pointer-events-auto transition-all duration-500 flex items-center justify-between rounded-full border ${scrolled
+            ? 'bg-background/80 backdrop-blur-xl border-border px-8 py-14 h-16 shadow-lg shadow-black/5'
+            : 'bg-transparent border-transparent px-8 py-5 h-20'
+            }`}
+        >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden rounded-sm">
+            <div className="w-10 h-10 lg:w-16 lg:h-16 relative flex items-center justify-center overflow-hidden rounded-sm">
               <img
                 src="/images/logo.png"
                 alt="New Path Construction Logo"
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="font-display text-lg tracking-tight font-bold hidden sm:block text-foreground">
+            <span className="font-display text-xl lg:text-2xl tracking-normal font-bold hidden sm:block text-foreground">
               <span className="text-accent">N</span>ew <span className="text-accent">P</span>ath <span className="text-accent">C</span>onstruction.
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <ul className="hidden lg:flex items-center gap-1">
-            {navigation.map((item) => (
-              <li
-                key={item.name}
-                className="relative"
-                onMouseEnter={() => item.children && setOpenDropdown(item.name)}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <Link
-                  href={item.href}
-                  onClick={(e) => {
-                    if (item.href !== '/') e.preventDefault();
-                  }}
-                  style={item.href !== '/' ? { cursor: 'default' } : undefined}
-                  className="px-4 py-2 text-base font-medium flex items-center gap-1 hover:text-accent transition-colors"
-                >
-                  {item.name}
-                  {item.children && <ChevronDown className="w-4 h-4" />}
-                </Link>
-                <AnimatePresence>
-                  {item.children && openDropdown === item.name && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full left-0 pt-2 min-w-[220px]"
+          <div className="hidden lg:block">
+            <Menu setActive={setOpenDropdown}>
+              {navigation.map((item) => {
+                if (item.children) {
+                  return (
+                    <MenuItem
+                      key={item.name}
+                      setActive={setOpenDropdown}
+                      active={openDropdown}
+                      item={item.name}
                     >
-                      <div className="bg-card border border-border rounded-md p-2 shadow-xl">
+                      <div className="flex flex-col gap-2 min-w-[200px] py-1 text-left">
                         {item.children.map((child) => (
-                          <Link
+                          <HoveredLink
                             key={child.href}
                             href={child.href}
-                            onClick={(e) => e.preventDefault()}
+                            onClick={(e: React.MouseEvent) => e.preventDefault()}
                             style={{ cursor: 'default' }}
-                            className="block px-3 py-2 text-base hover:bg-muted rounded-sm transition-colors"
                           >
                             {child.name}
-                          </Link>
+                          </HoveredLink>
                         ))}
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </li>
-            ))}
-          </ul>
+                    </MenuItem>
+                  );
+                } else {
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      onMouseEnter={() => setOpenDropdown(null)}
+                      onClick={(e) => {
+                        if (item.href !== '/') e.preventDefault();
+                      }}
+                      style={item.href !== '/' ? { cursor: 'default' } : undefined}
+                      className="cursor-pointer font-medium text-foreground/80 hover:text-accent transition-colors py-2 px-1 text-lg"
+                    >
+                      {item.name}
+                    </Link>
+                  );
+                }
+              })}
+            </Menu>
+          </div>
 
           {/* Right side */}
           <div className="flex items-center gap-3">
@@ -161,67 +147,40 @@ export default function Navbar() {
               Start a project
             </Link>
             <button
-              onClick={() => setMobileOpen(true)}
-              className="lg:hidden w-10 h-10 flex items-center justify-center"
-              aria-label="Open menu"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="lg:hidden w-10 h-10 flex items-center justify-center text-foreground hover:text-accent transition-colors"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
-              <Menu className="w-5 h-5" />
+              {mobileOpen ? <X className="w-6 h-6" /> : <MenuIcon className="w-5 h-5" />}
             </button>
           </div>
         </nav>
       </motion.header>
 
-      {/* Mobile menu */}
+      {/* Mobile menu dropdown card */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[60] bg-background lg:hidden flex flex-col h-[100dvh]"
-          >
-            <div className="flex items-center justify-between h-20 px-6 border-b border-border flex-none">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 relative flex items-center justify-center overflow-hidden rounded-sm">
-                  <img
-                    src="/images/logo.png"
-                    alt="New Path Construction Logo"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <span className="font-display text-lg tracking-tight font-bold text-foreground">
-                  <span className="text-accent">N</span>ew <span className="text-accent">P</span>ath <span className="text-accent">C</span>onstruction.
-                </span>
-              </div>
-              <button
-                onClick={() => setMobileOpen(false)}
-                className="w-10 h-10 flex items-center justify-center hover:text-accent transition-colors"
-                aria-label="Close menu"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            
-            {/* Scrollable middle container */}
-            <div className="flex-1 overflow-y-auto px-6 py-4">
-              <motion.ul
-                initial="closed"
-                animate="open"
-                variants={{
-                  open: { transition: { staggerChildren: 0.05 } },
-                }}
-                className="space-y-1"
-              >
+          <>
+            {/* Backdrop overlay to close when clicking outside */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.4 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMobileOpen(false)}
+              className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm lg:hidden pointer-events-auto"
+            />
+
+            {/* The dropdown card */}
+            <motion.div
+              initial={{ opacity: 0, y: 15, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 15, scale: 0.95 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed top-24 left-4 right-4 z-50 bg-card/95 backdrop-blur-xl border border-border rounded-[2rem] p-6 shadow-2xl flex flex-col max-h-[75vh] overflow-y-auto lg:hidden pointer-events-auto"
+            >
+              <ul className="space-y-3">
                 {navigation.map((item) => (
-                  <motion.li
-                    key={item.name}
-                    variants={{
-                      open: { opacity: 1, y: 0 },
-                      closed: { opacity: 0, y: 20 },
-                    }}
-                    className="border-b border-border/50 last:border-b-0"
-                  >
+                  <li key={item.name} className="border-b border-border/30 last:border-b-0 pb-3 last:pb-0">
                     <div className="flex items-center justify-between">
                       <Link
                         href={item.href}
@@ -233,7 +192,7 @@ export default function Navbar() {
                           }
                         }}
                         style={item.href !== '/' ? { cursor: 'default' } : undefined}
-                        className="flex-1 py-4 text-2xl font-display hover:text-accent transition-colors"
+                        className="flex-1 py-2 text-xl font-medium text-foreground hover:text-accent transition-colors"
                       >
                         {item.name}
                       </Link>
@@ -242,30 +201,30 @@ export default function Navbar() {
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
-                            setMobileDropdown(
-                              mobileDropdown === item.name ? null : item.name
+                            setOpenDropdown(
+                              openDropdown === item.name ? null : item.name
                             );
                           }}
-                          className="w-12 h-14 flex items-center justify-center text-foreground/60 hover:text-accent transition-colors"
+                          className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-muted text-foreground/60 hover:text-accent transition-colors"
                           aria-label={`Toggle ${item.name} menu`}
                         >
                           <ChevronDown
-                            className={`w-5 h-5 transition-transform duration-300 ${
-                              mobileDropdown === item.name ? 'rotate-180' : ''
-                            }`}
+                            className={`w-4 h-4 transition-transform duration-300 ${openDropdown === item.name ? 'rotate-180' : ''
+                              }`}
                           />
                         </button>
                       )}
                     </div>
+
                     {item.children && (
                       <AnimatePresence initial={false}>
-                        {mobileDropdown === item.name && (
+                        {openDropdown === item.name && (
                           <motion.ul
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.25, ease: 'easeInOut' }}
-                            className="overflow-hidden pl-4 pb-4 space-y-2 border-l border-border/60 ml-2 mt-1"
+                            className="overflow-hidden pl-4 pb-2 pt-2 space-y-2 border-l border-accent/30 ml-2"
                           >
                             {item.children.map((child) => (
                               <li key={child.href}>
@@ -273,7 +232,7 @@ export default function Navbar() {
                                   href={child.href}
                                   onClick={(e) => e.preventDefault()}
                                   style={{ cursor: 'default' }}
-                                  className="block py-2 text-base text-foreground/75 hover:text-accent transition-colors"
+                                  className="block py-1.5 text-[16px] text-muted-foreground hover:text-accent transition-colors"
                                 >
                                   {child.name}
                                 </Link>
@@ -283,21 +242,20 @@ export default function Navbar() {
                         )}
                       </AnimatePresence>
                     )}
-                  </motion.li>
+                  </li>
                 ))}
-              </motion.ul>
-            </div>
+              </ul>
 
-            {/* Bottom action bar */}
-            <div className="p-6 border-t border-border flex-none bg-background">
-              <Link
-                href="/contact"
-                className="block w-full text-center py-4 bg-accent text-background font-medium rounded-full hover:bg-accent/90 transition-colors"
-              >
-                Start a project
-              </Link>
-            </div>
-          </motion.div>
+              <div className="mt-6 pt-6 border-t border-border flex flex-col gap-3">
+                <Link
+                  href="/contact"
+                  className="block w-full text-center py-3 bg-accent text-background font-medium rounded-full hover:bg-accent/90 transition-colors shadow-lg shadow-accent/10"
+                >
+                  Start a project
+                </Link>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
