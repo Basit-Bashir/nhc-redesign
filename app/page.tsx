@@ -403,30 +403,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. STATS BAR WITH BG COLOR PARALLAX */}
-      <motion.section
-        ref={statsSectionRef}
-        style={{ backgroundColor: statsBg }}
-        className="border-y border-border py-20 transition-all duration-300 bg-transparent"
-      >
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { value: 200, prefix: '$', suffix: 'M+', label: 'Work completed' },
-            { value: 15, suffix: '+', label: 'Years of experience' },
-            { value: 4, suffix: '', label: 'Core service areas' },
-            { value: 100, suffix: '%', label: 'Excellence committed' },
-          ].map((stat, i) => (
-            <div key={stat.label}>
-              <div className="display-heading text-5xl md:text-6xl text-accent mb-2">
-                <Counter end={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
-              </div>
-              <p className="text-xs uppercase tracking-wider opacity-60 font-mono">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </motion.section>
-
-      {/* 3. TYPOLOGIES SHOWCASE */}
+      {/* 2. TYPOLOGIES SHOWCASE */}
       <section className="py-24 bg-transparent relative z-20">
         {/* Header area */}
         <div className="relative z-10 max-w-[1600px] mx-auto w-full px-6 lg:px-12 flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16 bg-transparent">
@@ -653,6 +630,29 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* 3. STATS BAR WITH BG COLOR PARALLAX */}
+      <motion.section
+        ref={statsSectionRef}
+        style={{ backgroundColor: statsBg }}
+        className="border-y border-border py-20 transition-all duration-300 bg-transparent"
+      >
+        <div className="max-w-[1600px] mx-auto px-6 lg:px-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+          {[
+            { value: 200, prefix: '$', suffix: 'M+', label: 'Work completed' },
+            { value: 15, suffix: '+', label: 'Years of experience' },
+            { value: 4, suffix: '', label: 'Core service areas' },
+            { value: 100, suffix: '%', label: 'Excellence committed' },
+          ].map((stat, i) => (
+            <div key={stat.label}>
+              <div className="display-heading text-5xl md:text-6xl text-accent mb-2">
+                <Counter end={stat.value} suffix={stat.suffix} prefix={stat.prefix} />
+              </div>
+              <p className="text-xs uppercase tracking-wider opacity-60 font-mono">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+      </motion.section>
 
       {/* 4. CTA / CURTAIN REVEAL */}
       <section ref={curtainRef} className="relative py-40 bg-transparent overflow-hidden">

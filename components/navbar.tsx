@@ -81,7 +81,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10 lg:w-16 lg:h-16 relative flex items-center justify-center overflow-hidden rounded-sm">
               <img
-                src="/images/logo.png"
+                src="/images/logo-transparent.png"
                 alt="New Path Construction Logo"
                 className="w-full h-full object-contain"
               />
