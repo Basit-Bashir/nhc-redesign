@@ -310,7 +310,7 @@ export default function HomePage() {
             </motion.div>
 
             {/* Editorial Serif & Sans Mix Heading */}
-            <h1 className="display-heading text-4xl sm:text-6xl lg:text-7xl text-white mb-4 sm:mb-6 leading-[0.95] max-w-[15ch]">
+            <h1 className="display-heading text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl 2xl:text-[9rem] text-white mb-4 sm:mb-6 leading-[0.95] max-w-[15ch]">
               <span className="block overflow-hidden h-fit py-1">
                 <motion.span variants={heroWordRevealVariants} className="block">
                   New Path
