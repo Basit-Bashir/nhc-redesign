@@ -61,6 +61,7 @@ export default function Navbar() {
 
   React.useEffect(() => {
     setMobileOpen(false);
+    setOpenDropdown(null);
   }, [pathname]);
 
   return (
@@ -79,16 +80,14 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 lg:w-16 lg:h-16 relative flex items-center justify-center overflow-hidden rounded-sm">
+            <div className="w-10 h-10 lg:w-32 lg:h-32 relative flex items-center justify-center overflow-hidden rounded-sm">
               <img
-                src="/images/logo-transparent.png"
+                src="/images/npc-logo.avif"
                 alt="New Path Construction Logo"
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="font-display text-xl lg:text-2xl tracking-normal font-bold hidden sm:block text-foreground">
-              <span className="text-accent">N</span>ew <span className="text-accent">P</span>ath <span className="text-accent">C</span>onstruction.
-            </span>
+
           </Link>
 
           {/* Desktop nav */}
@@ -102,14 +101,13 @@ export default function Navbar() {
                       setActive={setOpenDropdown}
                       active={openDropdown}
                       item={item.name}
+                      href={item.href}
                     >
                       <div className="flex flex-col gap-2 min-w-[200px] py-1 text-left">
                         {item.children.map((child) => (
                           <HoveredLink
                             key={child.href}
                             href={child.href}
-                            onClick={(e: React.MouseEvent) => e.preventDefault()}
-                            style={{ cursor: 'default' }}
                           >
                             {child.name}
                           </HoveredLink>
@@ -123,10 +121,6 @@ export default function Navbar() {
                       key={item.name}
                       href={item.href}
                       onMouseEnter={() => setOpenDropdown(null)}
-                      onClick={(e) => {
-                        if (item.href !== '/') e.preventDefault();
-                      }}
-                      style={item.href !== '/' ? { cursor: 'default' } : undefined}
                       className="cursor-pointer font-medium text-foreground/80 hover:text-accent transition-colors py-2 px-1 text-lg"
                     >
                       {item.name}
@@ -184,14 +178,7 @@ export default function Navbar() {
                     <div className="flex items-center justify-between">
                       <Link
                         href={item.href}
-                        onClick={(e) => {
-                          if (item.href !== '/') {
-                            e.preventDefault();
-                          } else {
-                            setMobileOpen(false);
-                          }
-                        }}
-                        style={item.href !== '/' ? { cursor: 'default' } : undefined}
+                        onClick={() => setMobileOpen(false)}
                         className="flex-1 py-2 text-xl font-medium text-foreground hover:text-accent transition-colors"
                       >
                         {item.name}
@@ -230,8 +217,7 @@ export default function Navbar() {
                               <li key={child.href}>
                                 <Link
                                   href={child.href}
-                                  onClick={(e) => e.preventDefault()}
-                                  style={{ cursor: 'default' }}
+                                  onClick={() => setMobileOpen(false)}
                                   className="block py-1.5 text-[16px] text-muted-foreground hover:text-accent transition-colors"
                                 >
                                   {child.name}

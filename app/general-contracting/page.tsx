@@ -1,38 +1,36 @@
 import { ServiceDetail } from '@/components/service-detail';
 
 export const metadata = {
-  title: 'Architectural Craft — Aethel',
-  description: 'Complete material realization and construction craftsmanship.',
+  title: 'General Contracting — New Path Construction',
+  description: 'Full-accountability project delivery, Six Sigma scheduling, custom cost databases, and customizable contracts.',
 };
 
 export default function GeneralContractingPage() {
   return (
     <div className="bg-transparent relative z-10">
       <ServiceDetail
-        eyebrow="Architectural Craft"
-        title="Material execution across"
-        italic="all scales."
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore."
-        overview="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        eyebrow="General Contracting"
+        title="Single-point responsibility for every"
+        italic="aspect of construction."
+        description="We serve as the prime contractor on projects where owners need a single point of responsibility for every aspect of construction. Our team self-performs key coordination functions and manages a vetted network of specialty subcontractors to protect your schedule, quality standards, and budget."
+        overview="We operate across the Continental United States with local subcontractor and material sourcing capabilities — delivering the accountability of a national firm with the relationships of a regional partner."
         capabilities={[
-          { title: 'Tectonic Assembly', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. New builds from foundation through occupancy.' },
-          { title: 'Slab Engineering', body: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tenant improvements.' },
-          { title: 'Detail Refinement', body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Custom fittings and reveals.' },
-          { title: 'System Integration', body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Direct trade control.' },
-          { title: 'Safety Protocols', body: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui. Site safety disciplines.' },
-          { title: 'Quality Stewardship', body: 'Aenean sollicitudin lorem quis bibendum auctor. Nam nec tellus a. Documented closeout.' },
+          { title: 'Estimating & Costs', body: 'Internally developed unit-cost database, full project take-off analysis, commodity tracking, real-time pricing, and competitive/negotiated bid procurement.' },
+          { title: 'Safety & Quality Control', body: 'OSHA training for all staff, custom jobsite safety signage, regular site inspections, toolbox safety meetings, and rigorous quality audits.' },
+          { title: 'Scheduling & Tech', body: 'Record-setting completion timelines, proprietary Six Sigma efficiency platform, custom project tracking, and 24/7 direct communication channels.' },
+          { title: 'Contracts & closeout', body: 'Direct bank coordination, industry-leading customizable contract options, comprehensive closeout logs, and systematic warranty management.' },
         ]}
         process={[
-          { num: '01', title: 'Plan Handoff', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Budget and design aligned before startup.' },
-          { num: '02', title: 'Procurement', body: 'Sed do eiusmod tempor incididunt ut labore et dolore magna. Schedule and long-lead order logs.' },
-          { num: '03', title: 'Active Assembly', body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco. Daily leadership and meetings.' },
-          { num: '04', title: 'Quality Checks', body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse. Inspection logs at milestones.' },
-          { num: '05', title: 'Turnover', body: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa. Operations handoff.' },
+          { num: '01', title: 'Negotiation & Setup', body: 'We finalize contract structures (lump sum or GMP) to align risks, insurance constraints, and owner expectations.' },
+          { num: '02', title: 'Subcontractor Sourcing', body: 'We secure competitive bids from our vetted network of local and national specialty subcontractors.' },
+          { num: '03', title: 'OSHA Safety & Compliance', body: 'We establish site safety signage, custom protocols, and run regular meetings to maintain zero-incident job sites.' },
+          { num: '04', title: 'Operations & Tracking', body: 'We apply Six Sigma scheduling and send detailed daily, weekly, and monthly dashboard reports to the owner.' },
+          { num: '05', title: 'Closeout & Warranty', body: 'We complete walkthroughs, collect warranties, hand over documentation, and manage post-occupancy care.' },
         ]}
         relatedServices={[
-          { title: 'Spatial Planning', href: '/pre-construction' },
-          { title: 'Tectonic Science', href: '/construction-management' },
-          { title: 'Material Research', href: '/real-estate-advisory' },
+          { title: 'Pre-Construction', href: '/pre-construction' },
+          { title: 'Construction Management', href: '/construction-management' },
+          { title: 'Real Estate Advisory', href: '/real-estate-advisory' },
         ]}
       />
     </div>

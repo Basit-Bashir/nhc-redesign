@@ -30,21 +30,28 @@ const categoryToIndex: { [key: string]: number } = {
 };
 
 const projects = [
-  { title: 'Starbucks Remodel', category: 'restaurants', location: 'Chicago, IL', year: '2024' },
-  { title: 'Dairy Queen Grill & Chill', category: 'restaurants', location: 'St. Charles, IL', year: '2023' },
-  { title: 'Jar Bar Restaurant', category: 'restaurants', location: 'Northbrook, IL', year: '2022' },
-  { title: 'BP Gas Station & Convenience', category: 'gas-stations', location: 'Phoenix, AZ', year: '2024' },
-  { title: 'Mango Express Fuel Station', category: 'gas-stations', location: 'Schiller Park, IL', year: '2023' },
-  { title: 'Mango Express Car Wash #2', category: 'car-wash', location: 'Schiller Park, IL', year: '2024' },
-  { title: 'Express Exterior Car Wash', category: 'car-wash', location: 'Scottsdale, AZ', year: '2023' },
-  { title: 'Xttrium Facility', category: 'industrial', location: 'Mt. Prospect, IL', year: '2024' },
+  { title: "Ruth's Chris", category: 'restaurants', location: 'Northbrook, IL', year: '2022' },
+  { title: 'Gyu-Kaku', category: 'restaurants', location: 'Chicago, IL', year: '2021' },
+  { title: 'Starbucks', category: 'restaurants', location: 'Hanover Park, IL', year: '2023' },
+  { title: "Dunkin'", category: 'restaurants', location: 'Lemont, IL', year: '2024' },
+  { title: "Arby's", category: 'restaurants', location: 'Schererville, IN', year: '2023' },
+  { title: 'Yerbabuena', category: 'restaurants', location: 'Lisle, IL', year: '2018' },
+  { title: 'BP Gas & C-Store', category: 'gas-stations', location: 'Phoenix, AZ', year: '2024' },
+  { title: 'Lemont Fuel Retail', category: 'gas-stations', location: 'Lemont, IL', year: '2021' },
+  { title: 'Grand Wash Express', category: 'car-wash', location: 'Tennessee', year: '2023' },
+  { title: 'Voda Car Wash', category: 'car-wash', location: 'Illinois', year: '2022' },
+  { title: 'Nova Express Car Wash', category: 'car-wash', location: 'Illinois', year: '2022' },
+  { title: 'Mango Express Car Wash', category: 'car-wash', location: 'Schiller Park, IL', year: '2024' },
+  { title: 'Magnolia on Zang Apartments', category: 'multi-family', location: 'Dallas, TX', year: '2023' },
+  { title: 'Belle Oaks Residence', category: 'multi-family', location: 'Richmond Heights, OH', year: '2022' },
+  { title: 'The Belmont Apartments', category: 'multi-family', location: 'Dallas, TX', year: '2021' },
+  { title: 'Vitruvian Park Residences', category: 'multi-family', location: 'Addison, TX', year: '2024' },
+  { title: 'rf IDEAS Headquarters', category: 'industrial', location: 'Schaumburg, IL', year: '2019' },
   { title: 'Ten Parkway North Office', category: 'industrial', location: 'Deerfield, IL', year: '2023' },
+  { title: 'Xttrium Facility', category: 'industrial', location: 'Mt. Prospect, IL', year: '2024' },
   { title: 'Pet Suites', category: 'medical', location: 'Arlington Heights, IL', year: '2023' },
   { title: 'Outpatient Surgery Center', category: 'medical', location: 'Scottsdale, AZ', year: '2024' },
-  { title: 'The Belmont Apartments', category: 'multi-family', location: 'Dallas, TX', year: '2023' },
-  { title: 'Vitruvian Park Residences', category: 'multi-family', location: 'Addison, TX', year: '2024' },
   { title: 'Halo Heat Retail Outlet', category: 'retail', location: 'Aurora, IL', year: '2023' },
-  { title: 'Dunkin\' Retail Store', category: 'retail', location: 'Chicago, IL', year: '2024' },
   { title: 'Extra Space Storage Facility', category: 'self-storage', location: 'Romeoville, IL', year: '2024' },
   { title: 'Climate-Controlled Storage', category: 'self-storage', location: 'Bedford, TX', year: '2023' },
 ];
@@ -56,10 +63,10 @@ export default function PortfolioPage() {
   return (
     <div className="bg-transparent relative z-10">
       <PageHeader
-        eyebrow="Portfolio"
-        title="Materialized spaces,"
-        italic="documented forms."
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        eyebrow="Our Work"
+        title="View all completed"
+        italic="portfolio projects."
+        description="From quick-service restaurants to ground-up multi-family developments — 109 completed projects across sectors and states."
       />
 
       {/* Filter bar - sticky with premium backdrop */}
@@ -70,11 +77,10 @@ export default function PortfolioPage() {
               <button
                 key={c.id}
                 onClick={() => setActive(c.id)}
-                className={`px-6 py-2.5 text-xs font-mono uppercase tracking-wider rounded-full transition-all duration-300 ${
-                  active === c.id
+                className={`px-6 py-2.5 text-xs font-mono uppercase tracking-wider rounded-full transition-all duration-300 ${active === c.id
                     ? 'bg-foreground text-background font-semibold scale-102 shadow-md'
                     : 'border border-border hover:border-accent hover:text-accent bg-transparent'
-                }`}
+                  }`}
               >
                 {c.label}
               </button>
@@ -118,7 +124,7 @@ interface Project {
 
 function PortfolioCard({ project, index }: { project: Project; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
-  
+
   // Motion values for tilt tracking
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -133,7 +139,7 @@ function PortfolioCard({ project, index }: { project: Project; index: number }) 
     const el = cardRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    
+
     const normX = (e.clientX - rect.left) / rect.width - 0.5;
     const normY = (e.clientY - rect.top) / rect.height - 0.5;
 

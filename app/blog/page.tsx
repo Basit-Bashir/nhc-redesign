@@ -8,40 +8,40 @@ import { motion } from 'framer-motion';
 
 const posts = [
   {
-    category: 'Analysis',
-    title: 'Volumetric and spatial systems in contemporary design frameworks',
-    date: 'May 2026',
-    readTime: '6 min read',
+    category: 'Announcement',
+    title: 'New Path Welcomes Eric Little as VP',
+    date: 'Feb 25, 2025',
+    readTime: '3 min read',
   },
   {
-    category: 'Inquiry',
-    title: 'Mapping architectural craft: material realization and scales',
-    date: 'April 2026',
-    readTime: '8 min read',
+    category: 'Expansion',
+    title: 'New Path Expands to Include Architectural & Design Services',
+    date: 'Feb 19, 2024',
+    readTime: '4 min read',
   },
   {
-    category: 'Research',
-    title: 'Stress testing substrates: thermal thresholds and weathering',
-    date: 'March 2026',
+    category: 'Industry',
+    title: 'Statistics Prove: More Car Washes Being Built, More People Washing Their Cars',
+    date: 'Apr 3, 2023',
     readTime: '5 min read',
   },
   {
-    category: 'Process',
-    title: 'Discipline in spatial planning: discovery through transition',
-    date: 'February 2026',
-    readTime: '7 min read',
+    category: 'Growth',
+    title: 'New Path Lands at No. 39 on Inc. 5000 List of Fastest Growing Companies',
+    date: 'Apr 3, 2023',
+    readTime: '3 min read',
   },
   {
-    category: 'Tectonics',
-    title: 'The mechanics of grid assemblies: programmatic void structures',
-    date: 'January 2026',
+    category: 'Profile',
+    title: '\'Outsider\' Firm Paving a \'New Path\' in Commercial Construction',
+    date: 'May 19, 2021',
     readTime: '6 min read',
   },
   {
-    category: 'Notes',
-    title: 'Geometries of scale: study on laminated core configurations',
-    date: 'December 2025',
-    readTime: '3 min read',
+    category: 'Project Update',
+    title: 'Construction Begins on $18M Hyatt Place Hotel in Downtown Evansville',
+    date: 'Mar 30, 2018',
+    readTime: '4 min read',
   },
 ];
 
@@ -49,10 +49,10 @@ export default function BlogPage() {
   return (
     <div className="bg-transparent relative z-10">
       <PageHeader
-        eyebrow="Inquiry"
-        title="Field notes, research,"
-        italic="and updates."
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        eyebrow="News & Insights"
+        title="Stories from the"
+        italic="field."
+        description="Press coverage, project announcements, and industry insights from the New Path Construction & Consulting team."
       />
 
       {/* Featured Post with Hover Effects */}

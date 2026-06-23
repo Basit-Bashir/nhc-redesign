@@ -1,41 +1,37 @@
 import { ServiceDetail } from '@/components/service-detail';
 
 export const metadata = {
-  title: 'Tectonic Science — Aethel',
-  description: 'Systematic supervision and quality stewardship.',
+  title: 'Construction Management — New Path Construction',
+  description: 'Independent owner-side construction management, contractor selection, budget and schedule oversight, and executive reporting.',
 };
 
 export default function ConstructionManagementPage() {
   return (
     <div className="bg-transparent relative z-10">
       <ServiceDetail
-        eyebrow="Tectonic Science"
-        title="Systematic oversight"
-        italic="across timelines."
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore."
-        overview="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        eyebrow="Construction Management"
+        title="Independent, owner-side oversight"
+        italic="aligned to your interests."
+        description="When you need an experienced professional in your corner — not the contractor's — our construction management service provides independent, owner-side oversight from design through substantial completion. We keep architects, engineers, and contractors aligned to your interests and accountable to their commitments."
+        overview="We oversee premier developments, from hotel assemblies to logistics headquarters. Featured projects include the Hyatt Place Hotel in Evansville, IN, the CubeSmart Facility in Chicago Heights, IL, and the rf IDEAS New Headquarters in Schaumburg, IL."
         capabilities={[
-          { title: 'Scheduling Rigor', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Milestone tracking and timeline oversight.' },
-          { title: 'Financial Balance', body: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cost control and budget management.' },
-          { title: 'Visual Reporting', body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Custom dashboards and field reporting.' },
-          { title: 'Threshold Checks', body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Strict quality gates and on-site checks.' },
-          { title: 'Risk Abatement', body: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui. Advanced project risk mitigation.' },
-          { title: 'Resolution Path', body: 'Aenean sollicitudin lorem quis bibendum auctor. Nam nec tellus a. Structured dispute paths.' },
+          { title: "Owner's Representation", body: "Comprehensive owner's representative services (OPM/OPR), contractor selection, contract negotiation, and a seamless process prioritizing efficiency from inception to completion." },
+          { title: 'Budget & Schedule Tracking', body: 'Schedule monitoring and recovery planning, budget tracking, proprietary cost control systems for labor and equipment, and executive dashboards.' },
+          { title: 'Documentation & Closeout', body: 'RFI and submittal management, strict quality control, site inspections, lien waiver/payment application review, punch list management, and closeout coordination.' },
         ]}
         process={[
-          { num: '01', title: 'Calibration', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Defining project coordinates and limits.' },
-          { num: '02', title: 'Verification', body: 'Sed do eiusmod tempor incididunt ut labore et dolore magna. Baseline review and audit.' },
-          { num: '03', title: 'Audit Loop', body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco. Continuous active field management.' },
-          { num: '04', title: 'Coordination', body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse. Team alignment and resolution paths.' },
-          { num: '05', title: 'Transition', body: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa. Closeout and knowledge transfer.' },
+          { num: '01', title: 'Scope Alignment', body: 'We review project scope, developer needs, and establish key performance indicators.' },
+          { num: '02', title: 'Subcontractor & PM Setup', body: 'We select contractors and negotiate agreements prioritizing the owner\'s budget.' },
+          { num: '03', title: 'Execution & Supervision', body: 'We run regular site checks, review RFIs, submittals, and enforce project parameters.' },
+          { num: '04', title: 'Financial Oversight', body: 'We review lien waivers, payment applications, and track costs dynamically.' },
+          { num: '05', title: 'Completion & Handover', body: 'We manage punch lists and closeout items to ensure standard-compliant delivery.' },
         ]}
         relatedServices={[
-          { title: 'Spatial Planning', href: '/pre-construction' },
-          { title: 'Architectural Craft', href: '/general-contracting' },
-          { title: 'Material Research', href: '/real-estate-advisory' },
+          { title: 'Pre-Construction', href: '/pre-construction' },
+          { title: 'General Contracting', href: '/general-contracting' },
+          { title: 'Real Estate Advisory', href: '/real-estate-advisory' },
         ]}
       />
     </div>
   );
 }
-

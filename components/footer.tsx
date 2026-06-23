@@ -108,8 +108,6 @@ export default function Footer() {
               <Link
                 key={link.name}
                 href={link.href}
-                onClick={(e) => e.preventDefault()}
-                style={{ cursor: 'default' }}
                 className="text-xs link-underline opacity-80 hover:opacity-100 font-mono"
               >
                 {link.name}

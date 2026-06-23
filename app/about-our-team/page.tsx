@@ -7,41 +7,53 @@ import { CTASection } from '@/components/cta-section';
 import { ArrowUpRight } from 'lucide-react';
 
 const team = [
-  { 
-    name: 'Concept & Ideation', 
-    role: 'Principal Architects', 
-    body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor.',
-    img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&q=80'
+  {
+    name: "Adam Garcia",
+    role: "CEO & Founder",
+    body: "Adam brings nearly a decade of Wall Street experience, with a track record spanning investment banking, private equity, corporate strategy, and executive leadership. He has managed middle-market M&A transactions exceeding $2 billion in combined value and founded New Path after identifying systemic inefficiencies in the commercial construction industry.",
+    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80",
   },
-  { 
-    name: 'Spatial Systems', 
-    role: 'Design Directors', 
-    body: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad.',
-    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80'
+  {
+    name: "Brad Kay",
+    role: "Director of Corporate Finance & Strategy",
+    body: "Brad brings extensive expertise in private equity and corporate development, with experience sourcing opportunities resulting in over $500 million in enterprise value closures and managing transactions exceeding $1 billion in value. He oversees internal controls, financial targets, and the enforcement of financial strategy at NPC.",
+    img: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&q=80",
   },
-  { 
-    name: 'Materiality', 
-    role: 'Material Researchers', 
-    body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.',
-    img: 'https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?w=800&q=80'
+  {
+    name: "Justin Rios",
+    role: "Director of Preconstruction & Design",
+    body: "Justin is an accomplished architectural professional with over 10 years of experience spanning hospitality and educational sectors, with projects valued between $1 million and $95 million. He holds a Master's Degree in Architecture (NAAB accredited) from Drury University and specializes in BIM and cost estimation.",
+    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80",
   },
-  { 
-    name: 'Circulation & Light', 
-    role: 'Spatial Planners', 
-    body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu.',
-    img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80'
+  {
+    name: "Shawn Montgomery",
+    role: "Director of Operations",
+    body: "Shawn brings over three decades of experience across residential, commercial, and international development. A former U.S. Marine, he emphasizes discipline, precision, and a results-driven mindset. He previously held senior leadership positions overseeing large-scale operations for private developers and global brands.",
+    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&q=80",
   },
-  { 
-    name: 'Visual Synthesis', 
-    role: 'Render Artists', 
-    body: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.',
-    img: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=800&q=80'
+  {
+    name: "Kelly Tulk",
+    role: "Director of Sales and Marketing",
+    body: "Kelly brings expertise from the hospitality sector, including her role as Membership & Marketing Director at a private country club. She holds a Bachelor's in Advertising from the Illinois Institute of Art and excels at building strong client relationships with genuine care for project success.",
+    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=800&q=80",
   },
-  { 
-    name: 'Accountability', 
-    role: 'Project Leads', 
-    body: 'Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae.',
-    img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&q=80'
+  {
+    name: "Eric Little",
+    role: "Director of Multifamily Construction",
+    body: "Eric brings construction expertise from 1998 onward following service in the U.S. Marine Corps. He has overseen development of more than 30,000 residential units, including Vitruvian Park — a $1.2 billion, 118-acre mixed-use development — and The Belmont in Dallas, the first LEED Silver Multifamily certified project in Texas.",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
+  },
+  {
+    name: "Evan Shor",
+    role: "Director of Financial Solutions",
+    body: "Evan collaborates with business owners and investors to secure strategic, timely financing that supports project success. His background includes mortgage lending, entrepreneurial experience, and over a decade as a firefighter and paramedic — disciplines that shaped his commitment to discipline, integrity, and service.",
+    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&q=80",
+  },
+  {
+    name: "Justin Beyer",
+    role: "Senior Business Development Manager",
+    body: "Justin has served at NPC since 2018, driving organizational growth through new business creation and client retention. His expertise spans market analysis, business strategy, and marketing. He earned a Bachelor's in Business Management from Elmhurst University and has worked across Chicagoland industries in sales and marketing.",
+    img: "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=800&q=80",
   },
 ];
 
@@ -49,18 +61,27 @@ export default function TeamPage() {
   return (
     <div className="bg-transparent relative z-10">
       <PageHeader
-        eyebrow="Atelier"
-        title="Crafting space through"
-        italic="collaboration."
-        description="Our team is a collective of architects, designers, and spatial planners united by a commitment to geometric clarity and materiality."
+        eyebrow="Our People"
+        title="The team behind"
+        italic="every project."
+        description="Senior leaders with decades of combined experience in general contracting, construction management, real estate development, and corporate finance."
       />
 
       <section className="py-32 relative bg-transparent z-10">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 bg-transparent">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 bg-transparent">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 bg-transparent">
             {team.map((member, i) => (
               <TeamCard key={member.name} member={member} index={i} />
             ))}
+            
+            {/* In memoriam */}
+            <div className="mt-16 col-span-full border border-border/60 bg-card/45 backdrop-blur-md p-8 md:p-12 rounded-3xl max-w-4xl mx-auto text-center">
+              <p className="eyebrow text-accent mb-3 font-mono text-xs uppercase tracking-widest">— In Memoriam</p>
+              <h3 className="display-heading text-3xl font-semibold mb-4 text-foreground">Oscar Garcia</h3>
+              <p className="opacity-70 leading-relaxed text-sm md:text-base lg:text-lg font-sans max-w-2xl mx-auto">
+                Oscar Garcia was a founding member of New Path Construction & Consulting and a valued partner whose dedication and spirit remain an enduring part of this firm.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -79,9 +100,9 @@ export default function TeamPage() {
             <span className="italic text-accent">collective.</span>
           </h2>
           <p className="text-lg md:text-xl opacity-75 mb-10 max-w-xl mx-auto font-sans leading-relaxed text-foreground">
-            Send your portfolio to{' '}
-            <a href="mailto:careers@aethel-design.com" className="text-accent link-underline font-semibold font-display">
-              careers@aethel-design.com
+            Send your resume to{' '}
+            <a href="mailto:info@newpathconstruction.com" className="text-accent link-underline font-semibold font-display">
+              info@newpathconstruction.com
             </a>
           </p>
         </motion.div>

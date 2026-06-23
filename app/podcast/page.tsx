@@ -8,12 +8,12 @@ import { CTASection } from '@/components/cta-section';
 import { ArrowUpRight, Play, Volume2 } from 'lucide-react';
 
 const episodes = [
-  { num: '012', title: 'Volumetric calibration and scale metrics', guest: 'Architectural Dialogue', duration: '48 min' },
-  { num: '011', title: 'Tectonic interface assembly logic', guest: 'Materials Lab', duration: '52 min' },
-  { num: '010', title: 'System integration and grid analysis', guest: 'Systems Panel', duration: '41 min' },
-  { num: '009', title: 'Mapping structural profiles across vectors', guest: 'Design Colloquium', duration: '37 min' },
-  { num: '008', title: 'The parameters of physical boundary structures', guest: 'Geometry Forum', duration: '44 min' },
-  { num: '007', title: 'Research notes on core spatial alignments', guest: 'Inquiry Session', duration: '46 min' },
+  { num: '006', title: 'Strategic funding and real estate capitalization', guest: 'Evan Shor, Director of Financial Solutions', duration: '44 min' },
+  { num: '005', title: 'Multifamily build systems and LEED sustainability', guest: 'Eric Little, Director of Multifamily Construction', duration: '52 min' },
+  { num: '004', title: 'Hospitality branding and deep client relationships', guest: 'Kelly Tulk, Director of Sales & Marketing', duration: '37 min' },
+  { num: '003', title: 'Marine-grade operational discipline and field logistics', guest: 'Shawn Montgomery, Director of Operations', duration: '48 min' },
+  { num: '002', title: 'Preconstruction intelligence and schematic estimating', guest: 'Justin Rios, Director of Preconstruction & Design', duration: '41 min' },
+  { num: '001', title: 'Financial foundations and building to last', guest: 'Brad Kay, Director of Corporate Finance & Strategy', duration: '45 min' },
 ];
 
 export default function PodcastPage() {
@@ -45,10 +45,10 @@ export default function PodcastPage() {
   return (
     <div className="bg-transparent relative z-10">
       <PageHeader
-        eyebrow="Broadcast"
-        title="Auditory research"
-        italic="and technical reviews."
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+        eyebrow="Building Legacies Podcast"
+        title="Conversations that shape"
+        italic="the built world."
+        description="Hosted by Adam Garcia, CEO of New Path Construction & Consulting. Honest, insightful conversations with entrepreneurs and business leaders exploring the real journey of building a successful company."
       />
 
       {/* Latest episode hero section */}

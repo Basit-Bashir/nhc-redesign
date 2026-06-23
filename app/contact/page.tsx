@@ -69,7 +69,7 @@ export default function ContactPage() {
                 </motion.div>
                 <h3 className="display-heading text-4xl mb-4 font-bold text-foreground">Transmission received.</h3>
                 <p className="opacity-70 max-w-sm mx-auto font-sans leading-relaxed">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.
+                  Thank you for reaching out. A principal from New Path Construction & Consulting will review your project details and contact you within one business day.
                 </p>
               </motion.div>
             ) : (

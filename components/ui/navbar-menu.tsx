@@ -19,27 +19,39 @@ export const MenuItem = ({
   active,
   item,
   children,
+  href,
 }: {
   setActive: (item: string | null) => void;
   active: string | null;
   item: string;
   children?: React.ReactNode;
+  href?: string;
 }) => {
+  const content = (
+    <motion.p
+      transition={{ duration: 0.3 }}
+      className="cursor-pointer font-medium text-foreground/80 hover:text-accent transition-colors py-2 text-lg flex items-center gap-1.5"
+    >
+      {item}
+      {children && (
+        <ChevronDown
+          className={`w-4 h-4 opacity-70 transition-transform duration-300 ${
+            active === item ? "rotate-180" : ""
+          }`}
+        />
+      )}
+    </motion.p>
+  );
+
   return (
     <div onMouseEnter={() => setActive(item)} className="relative">
-      <motion.p
-        transition={{ duration: 0.3 }}
-        className="cursor-pointer font-medium text-foreground/80 hover:text-accent transition-colors py-2 text-lg flex items-center gap-1.5"
-      >
-        {item}
-        {children && (
-          <ChevronDown
-            className={`w-4 h-4 opacity-70 transition-transform duration-300 ${
-              active === item ? "rotate-180" : ""
-            }`}
-          />
-        )}
-      </motion.p>
+      {href ? (
+        <Link href={href} onClick={() => setActive(null)}>
+          {content}
+        </Link>
+      ) : (
+        content
+      )}
       {active !== null && (
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 10 }}

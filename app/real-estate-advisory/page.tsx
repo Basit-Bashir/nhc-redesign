@@ -1,41 +1,38 @@
 import { ServiceDetail } from '@/components/service-detail';
 
 export const metadata = {
-  title: 'Material Research — Aethel',
-  description: 'Inquiry into raw substrates, aging, and structural performance.',
+  title: 'Real Estate Advisory — New Path Construction',
+  description: 'Site selection, financial proforma modeling, entitlements, capital raising, and owner-side deal evaluation.',
 };
 
 export default function RealEstateAdvisoryPage() {
   return (
     <div className="bg-transparent relative z-10">
       <ServiceDetail
-        eyebrow="Material Research"
-        title="Inquiry into raw substrates,"
-        italic="aging, and performance."
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore."
-        overview="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        eyebrow="Real Estate Advisory"
+        title="Evaluate opportunities and maximize"
+        italic="shareholder value."
+        description="Between our Wall Street roots and significant construction experience, New Path can help you evaluate real estate, drive value to shareholders, and provide options for the best use of any given property. Our advisory practice helps developers and investors evaluate opportunities before committing capital."
+        overview="Our principals have completed over $5 billion in deals across multiple industries. We provide complimentary advisory services to NPC clients to foster long-term partnerships."
         capabilities={[
-          { title: 'Context Studies', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Contextual modeling and local material audits.' },
-          { title: 'Substrate Tests', body: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Physical stress, strain, and weathering tests.' },
-          { title: 'Light Modeling', body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Precision shadow casting and solar heat studies.' },
-          { title: 'Thermal Engineering', body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Advanced envelope insulation profiling.' },
-          { title: 'Aging Studies', body: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui. Time-lapse weathering simulations.' },
-          { title: 'Lifecycle Mapping', body: 'Aenean sollicitudin lorem quis bibendum auctor. Nam nec tellus a. Ecological lifecycle charting.' },
+          { title: 'Dealmaking & Diligence', body: 'Site selection, comprehensive project due diligence, debt/equity investor introductions, and direct project co-investment capabilities.' },
+          { title: 'Trusted Network Sourcing', body: 'Connecting clients directly to leading banking institutions, private equity and hedge funds, legal councils, and brokerage partners.' },
+          { title: 'Construction & Finance IQ', body: 'Real-time pricing evaluation, site assessments, entitlement and zoning strategy, timeline projections, and proforma development.' },
+          { title: 'Preconstruction Advisory', body: 'Budget-backward project planning, capital raising, business-friendly phasing plans, and highest-and-best-use analysis.' },
         ]}
         process={[
-          { num: '01', title: 'Extraction', body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Retrieving and sourcing core substrate samples.' },
-          { num: '02', title: 'Analysis', body: 'Sed do eiusmod tempor incididunt ut labore et dolore magna. Lab-grade stress testing.' },
-          { num: '03', title: 'Simulation', body: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco. Environmental exposure modeling.' },
-          { num: '04', title: 'Selection', body: 'Duis aute irure dolor in reprehenderit in voluptate velit esse. Curating and validating finishes.' },
-          { num: '05', title: 'Deployment', body: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa. On-site assembly instruction.' },
+          { num: '01', title: 'Intake & Underwriting', body: 'We evaluate deal parameters, return targets, and capital requirements.' },
+          { num: '02', title: 'Due Diligence & Site Selection', body: 'We execute site searches and verify physical, zoning, and legal constraints.' },
+          { num: '03', title: 'Proforma Modeling', body: 'We build detailed financial models, cost structures, and timing projections.' },
+          { num: '04', title: 'Capital & Partner Structuring', body: 'We align debt/equity sources and design presentations for investors and lenders.' },
+          { num: '05', title: 'Strategic Execution', body: 'We assist in negotiations, entitlements, and land acquisition to launch the project.' },
         ]}
         relatedServices={[
-          { title: 'Spatial Planning', href: '/pre-construction' },
-          { title: 'Architectural Craft', href: '/general-contracting' },
-          { title: 'Tectonic Science', href: '/construction-management' },
+          { title: 'Pre-Construction', href: '/pre-construction' },
+          { title: 'General Contracting', href: '/general-contracting' },
+          { title: 'Construction Management', href: '/construction-management' },
         ]}
       />
     </div>
   );
 }
-

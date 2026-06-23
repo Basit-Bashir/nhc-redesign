@@ -37,7 +37,7 @@ const services = [
     href: '/real-estate-advisory',
     image: 'https://www.newpathconstruction.com/wp-content/uploads/2023/08/Newpath-1024x768.jpeg',
     blurb:
-      'If you are part of a tenant/landlord deal, New Path can step in to oversee the construction process to protect all stakeholders.',
+      'Between our Wall Street roots and significant construction experience, New Path can help you evaluate real estate, drive value to shareholders, and analyze optimal use of any property.',
   },
 ];
 
@@ -361,8 +361,6 @@ export default function HomePage() {
               >
                 <Link
                   href="/portfolio"
-                  onClick={(e) => e.preventDefault()}
-                  style={{ cursor: 'default' }}
                   className="inline-flex items-center gap-2 px-8 py-4 border border-white/30 text-white font-mono text-xs uppercase tracking-wider rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300"
                 >
                   View Portfolio <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -446,6 +444,13 @@ export default function HomePage() {
                     style={{ backgroundImage: `url(${v.image})` }}
                   />
 
+                  {/* Light bluish overlay on non-active cards */}
+                  <div
+                    className={`absolute inset-0 bg-sky-500/15 transition-opacity duration-700 pointer-events-none ${
+                      isActive ? 'opacity-0' : 'opacity-100'
+                    }`}
+                  />
+
                   {/* Geometric Grid Overlay */}
                   <div className={`absolute inset-0 z-10 pointer-events-none border border-white/5 transition-opacity duration-500 ${isActive ? 'opacity-30' : 'opacity-0'}`} />
 
@@ -490,8 +495,6 @@ export default function HomePage() {
                             </p>
                             <Link
                               href={v.href}
-                              onClick={(e) => e.preventDefault()}
-                              style={{ cursor: 'default' }}
                               className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent link-underline"
                             >
                               Explore Sector
@@ -613,8 +616,6 @@ export default function HomePage() {
                           <div className="pt-2">
                             <Link
                               href={v.href}
-                              onClick={(e) => e.preventDefault()}
-                              style={{ cursor: 'default' }}
                               className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-accent link-underline"
                             >
                               Explore Sector <ArrowUpRight className="w-4 h-4" />
@@ -689,8 +690,6 @@ export default function HomePage() {
             <div className="mt-12">
               <Link
                 href="/about"
-                onClick={(e) => e.preventDefault()}
-                style={{ cursor: 'default' }}
                 className="inline-flex items-center gap-2 link-underline text-accent font-mono text-xs uppercase tracking-wider"
               >
                 Learn about our vision <ArrowRight className="w-4 h-4" />
@@ -864,8 +863,6 @@ function ServiceCard({ service, index, total, scrollYProgress }: ServiceCardProp
         <div className="pt-4 border-t border-border/50">
           <Link
             href={service.href}
-            onClick={(e) => e.preventDefault()}
-            style={{ cursor: 'default' }}
             className="group inline-flex items-center gap-2 font-mono text-sm uppercase tracking-wider text-accent link-underline"
           >
             Explore discipline
