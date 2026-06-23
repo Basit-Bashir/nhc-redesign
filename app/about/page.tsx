@@ -8,13 +8,13 @@ import { useRef } from 'react';
 
 export default function AboutPage() {
   const storyRef = useRef<HTMLDivElement>(null);
-  
+
   // Parallax tracking for About Story Image
   const { scrollYProgress: storyScroll } = useScroll({
     target: storyRef,
     offset: ['start end', 'end start'],
   });
-  
+
   const imageY = useTransform(storyScroll, [0, 1], ['-15%', '15%']);
 
   return (
@@ -29,7 +29,7 @@ export default function AboutPage() {
       {/* Mission statement with Parallax Image */}
       <section ref={storyRef} className="py-40 bg-transparent relative z-10 overflow-hidden">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12 grid lg:grid-cols-12 gap-16 items-center">
-          
+
           {/* Left: Sticky/Parallax Image Column */}
           <div className="lg:col-span-5 relative bg-transparent">
             <p className="eyebrow mb-6 text-accent">— The Narrative</p>
@@ -84,7 +84,7 @@ export default function AboutPage() {
           <h2 className="display-heading text-huge mb-24 max-w-3xl">
             Principles we don&apos;t <span className="italic text-accent">compromise on.</span>
           </h2>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { num: '01', title: 'Integrity first.', body: 'We give clients honest assessments — even when the answer isn\'t what they want to hear. Long-term relationships matter more to us than any single project.' },
@@ -125,7 +125,7 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: idx * 0.1 }}
-                className="p-8 bg-card/45 backdrop-blur-md border border-border/60 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow bg-transparent"
+                className="p-8 bg-card/45 backdrop-blur-md border border-border/60 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow"
               >
                 <div className="display-heading text-7xl md:text-8xl text-accent mb-4">
                   <Counter end={s.value} suffix={s.suffix} prefix={s.prefix || ''} />
