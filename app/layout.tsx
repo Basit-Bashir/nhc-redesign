@@ -37,6 +37,9 @@ export const metadata: Metadata = {
   title: 'New Path Constructions',
   description:
     'A premium design and spatial architecture studio dedicated to geometric clarity, material logic, and tectonic research.',
+  icons: {
+    icon: '/images/npc-logo.avif',
+  },
 };
 
 export default function RootLayout({
