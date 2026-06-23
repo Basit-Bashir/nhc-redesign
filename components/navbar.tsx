@@ -80,7 +80,7 @@ export default function Navbar() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 lg:w-32 lg:h-32 relative flex items-center justify-center overflow-hidden rounded-sm">
+            <div className="w-32 h-10 lg:w-40 lg:h-12 relative flex items-center justify-center overflow-hidden rounded-lg bg-black dark:bg-transparent p-1.5">
               <img
                 src="/images/npc-logo.avif"
                 alt="New Path Construction Logo"

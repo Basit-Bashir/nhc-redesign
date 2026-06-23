@@ -5,7 +5,7 @@ import * as THREE from 'three';
 import { usePathname } from 'next/navigation';
 
 const CATEGORY_COLORS = [
-  new THREE.Color('#e09c50'), // 0. Restaurants (Accent warm gold)
+  new THREE.Color('#2563eb'), // 0. Restaurants (Accent construction blue)
   new THREE.Color('#38bdf8'), // 1. Gas Stations (Cyan)
   new THREE.Color('#60a5fa'), // 2. Car Wash (Blue)
   new THREE.Color('#f97316'), // 3. Industrial & Office (Orange)

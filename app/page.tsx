@@ -49,7 +49,7 @@ const verticals = [
     description: 'High-end restaurant builds, cafes, and hospitality spaces. Our experience spans national franchises like Starbucks and Dunkin\' to bespoke local dining concepts.',
     count: '75 Completed',
     highlight: 'Starbucks, Dairy Queen, Dunkin\'',
-    color: '#e09c50',
+    color: '#2563eb',
   },
   {
     name: 'Gas & Service Stations',
